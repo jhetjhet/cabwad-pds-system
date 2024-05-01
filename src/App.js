@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import MainLayout from "./components/pages/MainLayour";
