@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { CInput, CRadio, FormContainer } from ".";
 import InputFieldCivil from "./InputFieldCivil";
 import InputFieldLAD from "./InputFieldLAD";
@@ -5,82 +6,396 @@ import InputFieldOI from "./InputFieldOI";
 import InputFieldVW from "./InputFieldVW";
 import InputFieldWE from "./InputFieldWE";
 import InputFields from "./InputFields";
+import { defaultVal } from "./constants/constant";
 
 export default function PersonalInfoForm() {
+    const [formData, setFormData] = useState(defaultVal);
+
+    const handlePersonalInfoChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            personal_information: {
+                ...prevState.personal_information,
+                [name]: value,
+            },
+        }));
+    };
+
+    const handleNameChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            personal_information: {
+                ...prevState.personal_information,
+                name: {
+                    ...prevState.personal_information.name,
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handleSexChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            personal_information: {
+                ...prevState.personal_information,
+                gender: value,
+            },
+        }));
+    };
+
+    const handleCivilStatus = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            personal_information: {
+                ...prevState.personal_information,
+                civil_status: value,
+            },
+        }));
+    };
+
+    const handleCitizenshipChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            personal_information: {
+                ...prevState.personal_information,
+                citizenship: value,
+            },
+        }));
+    };
+
+    const handleResidentialAddressChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            personal_information: {
+                ...prevState.personal_information,
+                residential_address: {
+                    ...prevState.personal_information.residential_address,
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handlePermanentAddressChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            personal_information: {
+                ...prevState.personal_information,
+                permanent_address: {
+                    ...prevState.personal_information.permanent_address,
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handleFamilyBackgroundChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            family_background: {
+                ...prevState.family_background,
+                [name]: value,
+            },
+        }));
+    };
+
+    const handleSpouseName = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            family_background: {
+                ...prevState.family_background,
+                spouse_name: {
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handleFatherName = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            family_background: {
+                ...prevState.family_background,
+                fathers_name: {
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handleMotherName = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            family_background: {
+                ...prevState.family_background,
+                mothers_name: {
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    // const handleChildren = (event) => {
+    //     const { name, value } = event.target;
+    //     setFormData((prevState) => ({
+    //         ...prevState,
+    //         family_background: {
+    //             ...prevState.family_background,
+    //             childrens: [
+    //                 ...prevState.family_background.childrens,
+    //                 { [name]: value },
+    //             ],
+    //         },
+    //     }));
+    // };
+
+    const handleEducationalBackgroundChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            educational_background: {
+                ...prevState.educational_background,
+                [name]: value,
+            },
+        }));
+    };
+
+    const handleElementaryChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            educational_background: {
+                ...prevState.educational_background,
+                elementary: {
+                    ...prevState.educational_background.elementary,
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handleSecondaryChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            educational_background: {
+                ...prevState.educational_background,
+                secondary: {
+                    ...prevState.educational_background.secondary,
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handleVocationalChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            educational_background: {
+                ...prevState.educational_background,
+                vocational: {
+                    ...prevState.educational_background.vocational,
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handleCollegeChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            educational_background: {
+                ...prevState.educational_background,
+                college: {
+                    ...prevState.educational_background.college,
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    const handleGraduateStudiesChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            educational_background: {
+                ...prevState.educational_background,
+                graduate_studies: {
+                    ...prevState.educational_background.graduate_studies,
+                    [name]: value,
+                },
+            },
+        }));
+    };
+
+    // Additional handleChange functions for other nested levels as needed
+
+    console.log(formData);
+
     return (
         <>
             <form className="w-full mx-auto">
                 <FormContainer title={"Personal Information"}>
-                    <CInput label={"Surname"} name={"floating_email"} />
+                    <CInput
+                        label={"Surname"}
+                        name={"lastname"}
+                        value={formData.personal_information.name.lastname}
+                        onChange={handleNameChange}
+                    />
                     <div className="grid grid-cols-12 gap-x-1">
                         <CInput
                             label={"First Name"}
-                            name={"floating_email"}
+                            name={"firstname"}
                             className={"col-span-9"}
+                            value={formData.personal_information.name.firstname}
+                            onChange={handleNameChange}
                         />
                         <CInput
                             label={"Name Extension"}
-                            name={"floating_email"}
+                            name={"extension"}
                             className={"col-span-3"}
+                            value={formData.personal_information.name.extension}
+                            onChange={handleNameChange}
                         />
                     </div>
-                    <CInput label={"Middle Name"} name={"floating_email"} />
+                    <CInput
+                        label={"Middle Name"}
+                        name={"middlename"}
+                        value={formData.personal_information.name.middlename}
+                        onChange={handleNameChange}
+                    />
                     <hr className="bg-black" />
                     <div className="grid md:grid-cols-2 md:gap-6 mt-4">
                         <CInput
                             label={"Date of Birth"}
-                            name={"floating_bdate"}
+                            name={"birth_date"}
                             type="date"
                             className={"col-span-1"}
+                            value={formData.personal_information.birth_date}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"Place of Birth"}
-                            name={"floating_bplace"}
+                            name={"birth_date"}
                             className={"col-span-1"}
+                            value={formData.personal_information.birth_date}
+                            onChange={handlePersonalInfoChange}
                         />
                     </div>
                     <div>Sex:</div>
-                    <CRadio name={"Male"} id={"floating_sex"} type="radio" />
-                    <CRadio name={"Female"} id={"floating_sex"} type="radio" />
+                    <CRadio
+                        name={"Male"}
+                        value="male"
+                        onChange={handleSexChange}
+                        checked={formData.personal_information.gender == "male"}
+                    />
+                    <CRadio
+                        name={"Female"}
+                        value="female"
+                        onChange={handleSexChange}
+                        checked={
+                            formData.personal_information.gender == "female"
+                        }
+                    />
                     <div className="mt-4">Civil Status:</div>
-                    <CRadio name={"Single"} id={"floating_sex"} type="radio" />
-                    <CRadio name={"Married"} id={"floating_sex"} type="radio" />
-                    <CRadio name={"Widowed"} id={"floating_sex"} type="radio" />
+                    <CRadio
+                        name={"Single"}
+                        value={"single"}
+                        onChange={handleCivilStatus}
+                        checked={
+                            formData.personal_information.civil_status ==
+                            "single"
+                        }
+                    />
+                    <CRadio
+                        name={"Married"}
+                        value={"married"}
+                        onChange={handleCivilStatus}
+                        checked={
+                            formData.personal_information.civil_status ==
+                            "married"
+                        }
+                    />
+                    <CRadio
+                        name={"Widowed"}
+                        value={"widowed"}
+                        onChange={handleCivilStatus}
+                        checked={
+                            formData.personal_information.civil_status ==
+                            "widowed"
+                        }
+                    />
                     <CRadio
                         name={"Separated"}
-                        id={"floating_sex"}
-                        type="radio"
+                        value={"separated"}
+                        onChange={handleCivilStatus}
+                        checked={
+                            formData.personal_information.civil_status ==
+                            "separated"
+                        }
                     />
                     <div className="grid md:grid-cols-12">
                         <CRadio
                             name={"Other/s"}
-                            id={"floating_sex"}
-                            type="radio"
+                            value={"other"}
                             className="col-span-1"
+                            onChange={handleCivilStatus}
+                            checked={
+                                formData.personal_information.civil_status ==
+                                "other"
+                            }
                         />
-                        <input
-                            type={"text"}
-                            name={"Other/s Input"}
-                            id={"floating_s"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
-                            placeholder="Specify"
-                        />
+                        {formData.personal_information.civil_status ==
+                            "other" && (
+                            <input
+                                type={"text"}
+                                name={"civil_status_other"}
+                                id={"floating_s"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
+                                placeholder="Specify"
+                                value={
+                                    formData.personal_information
+                                        .civil_status_other
+                                }
+                                onChange={handlePersonalInfoChange}
+                            />
+                        )}
                     </div>
                     <div className="grid md:grid-cols-3 md:gap-6 mt-2">
                         <CInput
                             label={"Height (m)"}
-                            name={"floating_h"}
+                            name={"height"}
                             className="mt-2 col-span-1"
+                            value={formData.personal_information.height}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"Weight (kg)"}
-                            name={"floating_w"}
+                            name={"weight"}
                             className="mt-2 col-span-1"
+                            value={formData.personal_information.weight}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"Blood Type"}
-                            name={"floating_bt"}
+                            name={"blood_type"}
                             className="mt-2 col-span-1"
+                            value={formData.personal_information.blood_type}
+                            onChange={handlePersonalInfoChange}
                         />
                     </div>
                     <hr className="bg-black" />
@@ -88,113 +403,185 @@ export default function PersonalInfoForm() {
                     <div className="grid md:grid-cols-3 md:gap-6 mt-2">
                         <CInput
                             label={"GSIS ID No."}
-                            name={"floating_h"}
+                            name={"gsis_no"}
                             className="col-span-1"
+                            value={formData.personal_information.gsis_no}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"PAG-IBIG ID No."}
-                            name={"floating_h"}
+                            name={"pagibig_no"}
                             className="col-span-1"
+                            value={formData.personal_information.pagibig_no}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"PhilHealth No."}
-                            name={"floating_w"}
+                            name={"philhealth_no"}
                             className="col-span-1"
+                            value={formData.personal_information.philhealth_no}
+                            onChange={handlePersonalInfoChange}
                         />
                     </div>
                     <div className="grid md:grid-cols-3 md:gap-6">
                         <CInput
                             label={"SSS No."}
-                            name={"floating_bt"}
+                            name={"sss_no"}
                             className="col-span-1"
+                            value={formData.personal_information.sss_no}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"TIN No."}
-                            name={"floating_w"}
+                            name={"tin_no"}
                             className="col-span-1"
+                            value={formData.personal_information.tin_no}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"Agency Employee No."}
-                            name={"floating_bt"}
+                            name={"agency_employee_no"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information.agency_employee_no
+                            }
+                            onChange={handlePersonalInfoChange}
                         />
                     </div>
                     <hr className="bg-black" />
                     <div className="mt-4">Citizenship:</div>
                     <CRadio
                         name={"Filipino"}
-                        id={"floating_citizenship"}
-                        type="radio"
+                        value={"filipino"}
+                        onChange={handleCitizenshipChange}
+                        checked={
+                            formData.personal_information.citizenship ==
+                            "filipino"
+                        }
                     />
                     <CRadio
                         name={"Dual Citizen"}
-                        id={"floating_citizenship"}
-                        type="radio"
+                        value={"is_dual"}
+                        onChange={handleCitizenshipChange}
+                        checked={
+                            formData.personal_information.citizenship ==
+                            "is_dual"
+                        }
                     />
                     <CRadio
                         name={"by birth"}
-                        id={"floating_citizenship"}
-                        type="radio"
+                        value={"by_birth"}
+                        onChange={handleCitizenshipChange}
+                        checked={
+                            formData.personal_information.citizenship ==
+                            "by_birth"
+                        }
                     />
                     <CRadio
                         name={"by Naturalization"}
-                        id={"floating_citizenship"}
-                        type="radio"
+                        value={"by_naturalization"}
+                        onChange={handleCitizenshipChange}
+                        checked={
+                            formData.personal_information.citizenship ==
+                            "by_naturalization"
+                        }
                     />
-                    <div className="grid md:grid-cols-4 mb-4">
-                        <div className="col-span-1">
-                            If holder of dual citizenship, please indicate the
-                            details
+                    {formData.personal_information.citizenship == "is_dual" && (
+                        <div className="grid md:grid-cols-4 mb-4">
+                            <div className="col-span-1">
+                                If holder of dual citizenship, please indicate
+                                the details
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"citizenship_dual_country"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="details"
+                                value={
+                                    formData.personal_information
+                                        .citizenship_dual_country
+                                }
+                                onChange={handlePersonalInfoChange}
+                            />
                         </div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="details"
-                        />
-                    </div>
+                    )}
                     <hr className="bg-black" />
                     <div className="mt-4 mb-2">Residential Address:</div>
                     <div className="grid md:grid-cols-3 md:gap-6">
                         <CInput
                             label={"House/Block/Lot Number"}
-                            name={"floating_ra"}
+                            name={"house_no"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information
+                                    .residential_address.house_no
+                            }
+                            onChange={handleResidentialAddressChange}
                         />
                         <CInput
                             label={"Street"}
-                            name={"floating_ra"}
+                            name={"street"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information
+                                    .residential_address.street
+                            }
+                            onChange={handleResidentialAddressChange}
                         />
                         <CInput
                             label={"Subdivision/Village"}
-                            name={"floating_ra"}
+                            name={"subdivision"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information
+                                    .residential_address.subdivision
+                            }
+                            onChange={handleResidentialAddressChange}
                         />
                     </div>
                     <div className="grid md:grid-cols-3 md:gap-6">
                         <CInput
                             label={"Barangay"}
-                            name={"floating_ra"}
+                            name={"barangay"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information
+                                    .residential_address.barangay
+                            }
+                            onChange={handleResidentialAddressChange}
                         />
                         <CInput
                             label={"City/Municipality"}
-                            name={"floating_ra"}
+                            name={"city"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information
+                                    .residential_address.city
+                            }
+                            onChange={handleResidentialAddressChange}
                         />
                         <CInput
                             label={"Province"}
-                            name={"floating_ra"}
+                            name={"province"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information
+                                    .residential_address.province
+                            }
+                            onChange={handleResidentialAddressChange}
                         />
                     </div>
                     <div className="grid md:grid-cols-3 md:gap-6">
                         <CInput
                             label={"Zip Code"}
-                            name={"floating_ra"}
+                            name={"zipcode"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information
+                                    .residential_address.zipcode
+                            }
+                            onChange={handleResidentialAddressChange}
                         />
                     </div>
                     <hr className="bg-black" />
@@ -202,42 +589,77 @@ export default function PersonalInfoForm() {
                     <div className="grid md:grid-cols-3 md:gap-6">
                         <CInput
                             label={"House/Block/Lot Number"}
-                            name={"floating_pa"}
+                            name={"house_no"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information.permanent_address
+                                    .house_no
+                            }
+                            onChange={handlePermanentAddressChange}
                         />
                         <CInput
                             label={"Street"}
-                            name={"floating_pa"}
+                            name={"street"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information.permanent_address
+                                    .street
+                            }
+                            onChange={handlePermanentAddressChange}
                         />
                         <CInput
                             label={"Subdivision/Village"}
-                            name={"floating_pa"}
+                            name={"subdivision"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information.permanent_address
+                                    .subdivision
+                            }
+                            onChange={handlePermanentAddressChange}
                         />
                     </div>
                     <div className="grid md:grid-cols-3 md:gap-6">
                         <CInput
                             label={"Barangay"}
-                            name={"floating_pa"}
+                            name={"barangay"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information.permanent_address
+                                    .barangay
+                            }
+                            onChange={handlePermanentAddressChange}
                         />
                         <CInput
                             label={"City/Municipality"}
-                            name={"floating_pa"}
+                            name={"city"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information.permanent_address
+                                    .city
+                            }
+                            onChange={handlePermanentAddressChange}
                         />
                         <CInput
                             label={"Province"}
-                            name={"floating_pa"}
+                            name={"province"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information.permanent_address
+                                    .province
+                            }
+                            onChange={handlePermanentAddressChange}
                         />
                     </div>
                     <div className="grid md:grid-cols-3 md:gap-6">
                         <CInput
                             label={"Zip Code"}
-                            name={"floating_pa"}
+                            name={"zipcode"}
                             className="col-span-1"
+                            value={
+                                formData.personal_information.permanent_address
+                                    .zipcode
+                            }
+                            onChange={handlePermanentAddressChange}
                         />
                     </div>
                     <hr className="bg-black" />
@@ -245,77 +667,176 @@ export default function PersonalInfoForm() {
                     <div className="grid md:grid-cols-3 md:gap-6 mt-2">
                         <CInput
                             label={"Telephone No."}
-                            name={"floating_phone"}
+                            name={"telephone_no"}
                             type="tel"
                             className={"col-span-1"}
+                            value={formData.personal_information.telephone_no}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"Mobile number (123-456-7890)"}
-                            name={"floating_phone"}
+                            name={"mobile_no"}
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             type="tel"
                             className={"col-span-1"}
+                            value={formData.personal_information.mobile_no}
+                            onChange={handlePersonalInfoChange}
                         />
                         <CInput
                             label={"Email Address"}
-                            name={"floating_company"}
+                            name={"zipcode"}
                             className={"col-span-1"}
+                            value={formData.personal_information.zipcode}
+                            onChange={handlePersonalInfoChange}
                         />
                     </div>
                 </FormContainer>
                 <FormContainer title="Family Background">
-                    <CInput label={"Occupation"} name={"floating_fbcompany"} />
-                    <CInput label={"Occupation"} name={"floating_fbcompany"} />
+                    <CInput
+                        label={"Occupation"}
+                        name={"occupation"}
+                        value={formData.family_background.occupation}
+                        onChange={handleFamilyBackgroundChange}
+                    />
+                    <CInput
+                        label={"Employer/Business Name"}
+                        name={"employer_business_name"}
+                        value={
+                            formData.family_background.employer_business_name
+                        }
+                        onChange={handleFamilyBackgroundChange}
+                    />
                     <CInput
                         label={"Business Address"}
-                        name={"floating_fbcompany"}
+                        name={"business_address"}
+                        value={formData.family_background.business_address}
+                        onChange={handleFamilyBackgroundChange}
                     />
                     <CInput
                         label={"Telephone No."}
-                        name={"floating_fbcompany"}
+                        name={"telephone_no"}
                         type="tel"
+                        value={formData.family_background.telephone_no}
+                        onChange={handleFamilyBackgroundChange}
                     />
                     <div className="mt-4">Spouse:</div>
                     <div className="grid md:grid-cols-3 md:gap-6 mt-2">
-                        <CInput label={"Surname"} name={"floating_phone"} />
-                        <CInput label={"First Name"} name={"floating_phone"} />
                         <CInput
-                            label={"Email Address"}
+                            label={"Surname"}
+                            name={"lastname"}
+                            value={
+                                formData.family_background.spouse_name.lastname
+                            }
+                            onChange={handleSpouseName}
+                        />
+                        <CInput
+                            label={"First Name"}
+                            name={"firstname"}
+                            value={
+                                formData.family_background.spouse_name.firstname
+                            }
+                            onChange={handleSpouseName}
+                        />
+                        <CInput
+                            label={"Middle Name"}
+                            name={"middlename"}
+                            className={"col-span-1"}
+                            value={
+                                formData.family_background.spouse_name
+                                    .middlename
+                            }
+                            onChange={handleSpouseName}
+                        />
+                        <CInput
+                            label={"extension"}
                             name={"floating_company"}
                             className={"col-span-1"}
+                            value={
+                                formData.family_background.spouse_name.extension
+                            }
+                            onChange={handleSpouseName}
                         />
                     </div>
                     <div>Father:</div>
                     <div className="grid md:grid-cols-3 md:gap-6 mt-2">
-                        <CInput label={"Surname"} name={"floating_phone"} />
-                        <CInput label={"First Name"} name={"floating_phone"} />
                         <CInput
-                            label={"Email Address"}
-                            name={"floating_company"}
+                            label={"Surname"}
+                            name={"lastname"}
+                            value={
+                                formData.family_background.fathers_name.lastname
+                            }
+                            onChange={handleSpouseName}
+                        />
+                        <CInput
+                            label={"First Name"}
+                            name={"firstname"}
+                            value={
+                                formData.family_background.fathers_name
+                                    .firstname
+                            }
+                            onChange={handleSpouseName}
+                        />
+                        <CInput
+                            label={"Middle Name"}
+                            name={"middlename"}
                             className={"col-span-1"}
+                            value={
+                                formData.family_background.fathers_name
+                                    .middlename
+                            }
+                            onChange={handleSpouseName}
+                        />
+                        <CInput
+                            label={"Name Extension"}
+                            name={"extension"}
+                            className={"col-span-1"}
+                            value={
+                                formData.family_background.fathers_name
+                                    .extension
+                            }
+                            onChange={handleSpouseName}
                         />
                     </div>
                     <div>Mother:</div>
                     <div className="grid md:grid-cols-3 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Maiden's Name"}
-                            name={"floating_phone"}
+                            name={"maidenname"}
                             className={"col-span-1"}
+                            value={
+                                formData.family_background.mothers_name
+                                    .maidenname
+                            }
+                            onChange={handleSpouseName}
                         />
                         <CInput
                             label={"Surname"}
-                            name={"floating_phone"}
+                            name={"lastname"}
                             className={"col-span-1"}
+                            value={
+                                formData.family_background.mothers_name.lastname
+                            }
+                            onChange={handleSpouseName}
                         />
                         <CInput
                             label={"First Name"}
-                            name={"floating_phone"}
+                            name={"firstname"}
                             className={"col-span-1"}
+                            value={
+                                formData.family_background.mothers_name
+                                    .firstname
+                            }
+                            onChange={handleSpouseName}
                         />
                         <CInput
-                            label={"Email Address"}
-                            name={"floating_company"}
+                            label={"Middle Name"}
+                            name={"middlename"}
                             className={"col-span-1"}
+                            value={
+                                formData.family_background.mothers_name
+                                    .middlename
+                            }
+                            onChange={handleSpouseName}
                         />
                     </div>
                     <hr className="bg-black mb-4" />
