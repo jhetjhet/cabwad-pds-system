@@ -1,46 +1,48 @@
-import React, { useState } from "react";
 
-function InputFieldCivil() {
-    const [fields, setFields] = useState([
-        {
-            name: "",
-            rating: "",
-            dateOfExamination: "",
-            placeOfExamination: "",
-            licenseNumber: "",
-            dateOfValidity: "",
-        },
-    ]);
+function InputFieldCivil({ formData, setFormData }) {
 
     const handleChange = (index, key, value) => {
-        const newFields = [...fields];
+        const newFields = [...formData.civil_services];
         newFields[index][key] = value;
-        setFields(newFields);
+
+        let newFormData = {...formData};
+        newFormData.civil_services = newFields;
+
+        setFormData(newFormData);
     };
 
     const handleAddField = () => {
-        setFields([
-            ...fields,
+        let newFields = [
+            ...formData.civil_services,
             {
                 name: "",
                 rating: "",
-                dateOfExamination: "",
-                placeOfExamination: "",
-                licenseNumber: "",
-                dateOfValidity: "",
+                examination_date: "",
+                examination_place: "",
+                license_no: "",
+                license_validity_date: "",
             },
-        ]);
+        ];
+
+        let newFormData = {...formData};
+        newFormData.civil_services = newFields;
+
+        setFormData(newFormData);
     };
 
     const handleRemoveField = (index) => {
-        const newFields = [...fields];
+        const newFields = [...formData.civil_services];
         newFields.splice(index, 1);
-        setFields(newFields);
+
+        let newFormData = {...formData};
+        newFormData.civil_services = newFields;
+
+        setFormData(newFormData);
     };
 
     return (
         <div>
-            {fields.map((field, index) => (
+            {formData.civil_services.map((field, index) => (
                 <div key={index} className="grid grid-cols-3 gap-x-4 ">
                     <div className="relative z-0 w-full mb-5 group">
                         <input
@@ -83,11 +85,11 @@ function InputFieldCivil() {
                             type="date"
                             placeholder=" "
                             name="doe"
-                            value={field.dateOfExamination}
+                            value={field.examination_date}
                             onChange={(e) =>
                                 handleChange(
                                     index,
-                                    "dateOfExamination",
+                                    "examination_date",
                                     e.target.value
                                 )
                             }
@@ -105,11 +107,11 @@ function InputFieldCivil() {
                             type="text"
                             placeholder=" "
                             name="poe"
-                            value={field.placeOfExamination}
+                            value={field.examination_place}
                             onChange={(e) =>
                                 handleChange(
                                     index,
-                                    "placeOfExamination",
+                                    "examination_place",
                                     e.target.value
                                 )
                             }
@@ -127,11 +129,11 @@ function InputFieldCivil() {
                             type="text"
                             placeholder=" "
                             name="ln"
-                            value={field.licenseNumber}
+                            value={field.license_no}
                             onChange={(e) =>
                                 handleChange(
                                     index,
-                                    "licenseNumber",
+                                    "license_no",
                                     e.target.value
                                 )
                             }
@@ -149,11 +151,11 @@ function InputFieldCivil() {
                             type="date"
                             placeholder=" "
                             name="dov"
-                            value={field.dateOfValidity}
+                            value={field.license_validity_date}
                             onChange={(e) =>
                                 handleChange(
                                     index,
-                                    "dateOfValidity",
+                                    "license_validity_date",
                                     e.target.value
                                 )
                             }
@@ -168,6 +170,7 @@ function InputFieldCivil() {
                     </div>
                     <div className="relative z-0 w-full mb-5 group">
                         <button
+                            type="button"
                             className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-20 h-8 px-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 mt-4"
                             onClick={() => handleRemoveField(index)}
                         >
@@ -177,6 +180,7 @@ function InputFieldCivil() {
                 </div>
             ))}
             <button
+                type="button"
                 onClick={handleAddField}
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4"
             >

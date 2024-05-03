@@ -132,7 +132,108 @@ export const defaultVal = {
             scholarship: "",
         },
     },
-    voluntary_works: [],
-    learning_and_development: [],
-    other_information: [],
+    civil_services: [
+        {
+            name: "",
+            rating: "",
+            examination_date: "",
+            examination_place: "",
+            license_no: "",
+            license_validity_date: "",
+        },
+    ],
+    work_experiences: [
+        {
+            from: "",
+            to: "",
+            name: "",
+            department: "",
+            salary: "",
+            pay_grade: "",
+            appointment_status: "",
+            govt_service: "",
+        },
+    ],
+    voluntary_works: [
+        {
+            organization: "",
+            from: "",
+            to: "",
+            hours_no: "",
+            position: "",
+        },
+    ],
+    learning_and_development: [
+        {
+            title: "",
+            from: "",
+            to: "",
+            hours_no: "",
+            type: "",
+            conducted_by: "",
+        },
+    ],
+    other_information: [
+        {
+            skill: "",
+            recognition: "",
+            membership: "",
+        },
+    ],
+    questions: {
+        q34: {
+            a: false,
+            b: false,
+            details: "",   
+        },
+        q35: {
+            a: {
+                value: "",
+                details: "",
+            },
+            b: {
+                value: "",
+                details: {
+                    date_filed: "",
+                    case: "",
+                },
+            },
+        },
+        q36: {
+            value: "",
+            details: "",
+        },
+        q37: {
+            value: "",
+            details: "",
+        },
+        q38: {
+            a: {
+                value: "",
+                details: "",
+            },
+            b: {
+                value: "",
+                details: "",
+            },
+        },
+        q37: {
+            value: "",
+            details: "",
+        },
+        q40: {
+            a: {
+                value: "",
+                details: "",
+            },
+            b: {
+                value: "",
+                details: "",
+            },
+            c: {
+                value: "",
+                details: "",
+            },
+        }
+    }
 };

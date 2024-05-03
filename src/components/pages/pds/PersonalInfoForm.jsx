@@ -115,6 +115,7 @@ export default function PersonalInfoForm() {
             family_background: {
                 ...prevState.family_background,
                 spouse_name: {
+                    ...prevState.family_background.spouse_name,
                     [name]: value,
                 },
             },
@@ -128,6 +129,7 @@ export default function PersonalInfoForm() {
             family_background: {
                 ...prevState.family_background,
                 fathers_name: {
+                    ...prevState.family_background.fathers_name,
                     [name]: value,
                 },
             },
@@ -141,110 +143,42 @@ export default function PersonalInfoForm() {
             family_background: {
                 ...prevState.family_background,
                 mothers_name: {
+                    ...prevState.family_background.mothers_name,
                     [name]: value,
                 },
             },
         }));
     };
-
-    // const handleChildren = (event) => {
-    //     const { name, value } = event.target;
-    //     setFormData((prevState) => ({
-    //         ...prevState,
-    //         family_background: {
-    //             ...prevState.family_background,
-    //             childrens: [
-    //                 ...prevState.family_background.childrens,
-    //                 { [name]: value },
-    //             ],
-    //         },
-    //     }));
-    // };
-
-    const handleEducationalBackgroundChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            educational_background: {
-                ...prevState.educational_background,
-                [name]: value,
-            },
-        }));
-    };
-
-    const handleElementaryChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            educational_background: {
-                ...prevState.educational_background,
-                elementary: {
-                    ...prevState.educational_background.elementary,
-                    [name]: value,
-                },
-            },
-        }));
-    };
-
-    const handleSecondaryChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            educational_background: {
-                ...prevState.educational_background,
-                secondary: {
-                    ...prevState.educational_background.secondary,
-                    [name]: value,
-                },
-            },
-        }));
-    };
-
-    const handleVocationalChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            educational_background: {
-                ...prevState.educational_background,
-                vocational: {
-                    ...prevState.educational_background.vocational,
-                    [name]: value,
-                },
-            },
-        }));
-    };
-
-    const handleCollegeChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            educational_background: {
-                ...prevState.educational_background,
-                college: {
-                    ...prevState.educational_background.college,
-                    [name]: value,
-                },
-            },
-        }));
-    };
-
-    const handleGraduateStudiesChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            educational_background: {
-                ...prevState.educational_background,
-                graduate_studies: {
-                    ...prevState.educational_background.graduate_studies,
-                    [name]: value,
-                },
-            },
-        }));
-    };
-
+    
     // Additional handleChange functions for other nested levels as needed
+    const generalHandleChange = (e) => {
+        const { name, value } = e.target;
+    
+        // Split the name into nested keys
+        const keys = name.split('.');
+        
+        // Initialize a newFormData object
+        let newFormData = { ...formData };
+    
+        // Get the nested object to update
+        let nestedObj = newFormData;
+    
+        // Traverse the nested object to reach the deepest level
+        for (let i = 0; i < keys.length - 1; i++) {
+            if (!nestedObj[keys[i]]) {
+                nestedObj[keys[i]] = {};
+            }
+            nestedObj = nestedObj[keys[i]];
+        }
+    
+        // Update the value at the deepest level
+        nestedObj[keys[keys.length - 1]] = value;
+    
+        // Update the state with the modified formData
+        setFormData(newFormData);
+    }
 
-    console.log(formData);
+    console.log(formData)
 
     return (
         <>
@@ -290,9 +224,9 @@ export default function PersonalInfoForm() {
                         />
                         <CInput
                             label={"Place of Birth"}
-                            name={"birth_date"}
+                            name={"birth_place"}
                             className={"col-span-1"}
-                            value={formData.personal_information.birth_date}
+                            value={formData.personal_information.birth_place}
                             onChange={handlePersonalInfoChange}
                         />
                     </div>
@@ -656,8 +590,7 @@ export default function PersonalInfoForm() {
                             name={"zipcode"}
                             className="col-span-1"
                             value={
-                                formData.personal_information.permanent_address
-                                    .zipcode
+                                formData.personal_information.permanent_address.zipcode
                             }
                             onChange={handlePermanentAddressChange}
                         />
@@ -684,9 +617,9 @@ export default function PersonalInfoForm() {
                         />
                         <CInput
                             label={"Email Address"}
-                            name={"zipcode"}
+                            name={"email"}
                             className={"col-span-1"}
-                            value={formData.personal_information.zipcode}
+                            value={formData.personal_information.email}
                             onChange={handlePersonalInfoChange}
                         />
                     </div>
@@ -742,14 +675,13 @@ export default function PersonalInfoForm() {
                             name={"middlename"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.spouse_name
-                                    .middlename
+                                formData.family_background.spouse_name.middlename
                             }
                             onChange={handleSpouseName}
                         />
                         <CInput
                             label={"extension"}
-                            name={"floating_company"}
+                            name={"extension"}
                             className={"col-span-1"}
                             value={
                                 formData.family_background.spouse_name.extension
@@ -765,36 +697,33 @@ export default function PersonalInfoForm() {
                             value={
                                 formData.family_background.fathers_name.lastname
                             }
-                            onChange={handleSpouseName}
+                            onChange={handleFatherName}
                         />
                         <CInput
                             label={"First Name"}
                             name={"firstname"}
                             value={
-                                formData.family_background.fathers_name
-                                    .firstname
+                                formData.family_background.fathers_name.firstname
                             }
-                            onChange={handleSpouseName}
+                            onChange={handleFatherName}
                         />
                         <CInput
                             label={"Middle Name"}
                             name={"middlename"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.fathers_name
-                                    .middlename
+                                formData.family_background.fathers_name.middlename
                             }
-                            onChange={handleSpouseName}
+                            onChange={handleFatherName}
                         />
                         <CInput
                             label={"Name Extension"}
                             name={"extension"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.fathers_name
-                                    .extension
+                                formData.family_background.fathers_name.extension
                             }
-                            onChange={handleSpouseName}
+                            onChange={handleFatherName}
                         />
                     </div>
                     <div>Mother:</div>
@@ -804,10 +733,9 @@ export default function PersonalInfoForm() {
                             name={"maidenname"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.mothers_name
-                                    .maidenname
+                                formData.family_background.mothers_name.maidenname
                             }
-                            onChange={handleSpouseName}
+                            onChange={handleMotherName}
                         />
                         <CInput
                             label={"Surname"}
@@ -816,271 +744,322 @@ export default function PersonalInfoForm() {
                             value={
                                 formData.family_background.mothers_name.lastname
                             }
-                            onChange={handleSpouseName}
+                            onChange={handleMotherName}
                         />
                         <CInput
                             label={"First Name"}
                             name={"firstname"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.mothers_name
-                                    .firstname
+                                formData.family_background.mothers_name.firstname
                             }
-                            onChange={handleSpouseName}
+                            onChange={handleMotherName}
                         />
                         <CInput
                             label={"Middle Name"}
                             name={"middlename"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.mothers_name
-                                    .middlename
+                                formData.family_background.mothers_name.middlename
                             }
-                            onChange={handleSpouseName}
+                            onChange={handleMotherName}
                         />
                     </div>
                     <hr className="bg-black mb-4" />
-                    <InputFields />
+                    <InputFields 
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
                 </FormContainer>
                 <FormContainer title={"Educational Background"}>
                     <div>Elementary:</div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Name of School"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.elementary.school_name"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Basic Education/Degree/Course"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.elementary.degree"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Start"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.elementary.period_of_attendance.from"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.elementary.period_of_attendance.to"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                     </div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Highest Level/Units Earned"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.elementary.highest_unit"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.elementary.year_graduated"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.elementary.scholarship"}
+                            onChange={generalHandleChange}
                         />
                     </div>
                     <div>Secondary:</div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Name of School"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.secondary.school_name"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Basic Education/Degree/Course"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.secondary.degree"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Start"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.secondary.period_of_attendance.from"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.secondary.period_of_attendance.to"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                     </div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Highest Level/Units Earned"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.secondary.highest_unit"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.secondary.year_graduated"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.secondary.scholarship"}
+                            onChange={generalHandleChange}
                         />
                     </div>
                     <div>Vocational / Trade Course:</div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Name of School"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.vocational.school_name"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Basic Education/Degree/Course"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.vocational.degree"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Start"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.vocational.period_of_attendance.from"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.vocational.period_of_attendance.to"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                     </div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Highest Level/Units Earned"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.vocational.highest_unit"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.vocational.year_graduated"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.vocational.scholarship"}
+                            onChange={generalHandleChange}
                         />
                     </div>
                     <div>College:</div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Name of School"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.college.school_name"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Basic Education/Degree/Course"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.college.degree"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Start"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.college.period_of_attendance.from"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.college.period_of_attendance.to"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                     </div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Highest Level/Units Earned"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.college.highest_unit"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.college.year_graduated"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.college.scholarship"}
+                            onChange={generalHandleChange}
                         />
                     </div>
                     <div>Graduate Studies:</div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Name of School"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.graduate_studies.school_name"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Basic Education/Degree/Course"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.graduate_studies.degree"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Start"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.graduate_studies.period_of_attendance.from"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.graduate_studies.period_of_attendance.to"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                     </div>
                     <div className="grid md:grid-cols-6 md:gap-x-6 md:gap-y-0 mt-2">
                         <CInput
                             label={"Highest Level/Units Earned"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.graduate_studies.highest_unit"}
+                            onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
-                            name={"floating_es"}
                             type="date"
+                            name={"educational_background.graduate_studies.year_graduated"}
+                            onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
-                            name={"floating_es"}
                             className={"col-span-2"}
+                            name={"educational_background.graduate_studies.scholarship"}
+                            onChange={generalHandleChange}
                         />
                     </div>
                 </FormContainer>
                 <FormContainer title={"Civil Service Eligibility"}>
-                    <InputFieldCivil />
+                    <InputFieldCivil 
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
                 </FormContainer>
                 <FormContainer title={"Work Experience"}>
-                    <InputFieldWE />
+                    <InputFieldWE 
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
                 </FormContainer>
                 <FormContainer
                     title={
                         "Voluntary Work or Involvement in Civic / Non-Government / People / Voluntary Organization/s"
                     }
                 >
-                    <InputFieldVW />
+                    <InputFieldVW 
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
                 </FormContainer>
                 <FormContainer
                     title={
                         "Learning and Development (L&D) Interventions/Training Programs Attended"
                     }
                 >
-                    <InputFieldLAD />
+                    <InputFieldLAD 
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
                 </FormContainer>
                 <FormContainer title={"Other Information"}>
-                    <InputFieldOI />
+                    <InputFieldOI 
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
                 </FormContainer>
                 <FormContainer title={"Addtional Questions"}>
                     <div>
@@ -1091,8 +1070,12 @@ export default function PersonalInfoForm() {
                         you will be apppointed,
                     </div>
                     <div>a. within the third degree?</div>
-                    <CRadio name={"Yes"} id={"floating_a34"} type="radio" />
-                    <CRadio name={"No"} id={"floating_a34"} type="radio" />
+                    <CRadio name={"Yes"} id={"floating_a34"} type="radio" 
+                        checked={formData.questions.q34.a}
+                    />
+                    <CRadio name={"No"} id={"floating_a34"} type="radio" 
+                        checked={formData.questions.q34.b}
+                    />
                     <div>
                         b. within the fourth degree (for Local Government Unit -
                         Career Employees)?
