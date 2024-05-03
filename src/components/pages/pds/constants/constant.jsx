@@ -184,7 +184,7 @@ export const defaultVal = {
         q34: {
             a: false,
             b: false,
-            details: "",   
+            details: "",
         },
         q35: {
             a: {
@@ -217,7 +217,7 @@ export const defaultVal = {
                 details: "",
             },
         },
-        q37: {
+        q39: {
             value: "",
             details: "",
         },
@@ -234,6 +234,6 @@ export const defaultVal = {
                 value: "",
                 details: "",
             },
-        }
-    }
+        },
+    },
 };

@@ -49,7 +49,14 @@ export const CInput = ({
     );
 };
 
-export const CRadio = ({ name, className, onChange, checked, value }) => {
+export const CRadio = ({
+    name,
+    className,
+    onChange,
+    checked,
+    value,
+    label,
+}) => {
     return (
         <div className={`relative z-0 w-full group ${className}`}>
             <input
@@ -60,7 +67,7 @@ export const CRadio = ({ name, className, onChange, checked, value }) => {
                 checked={checked}
             />
             <label htmlFor={name} className="ml-1">
-                {name}
+                {label || name}
             </label>
         </div>
     );

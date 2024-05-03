@@ -69,6 +69,393 @@ export default function PersonalInfoForm() {
         }));
     };
 
+    const handleq34a = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q34: {
+                    ...prevState.questions.q34,
+                    a: value == "yes",
+                },
+            },
+        }));
+    };
+
+    const handleq34b = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q34: {
+                    ...prevState.questions.q34,
+                    b: value == "yes",
+                },
+            },
+        }));
+    };
+
+    const handleq34det = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q34: {
+                    ...prevState.questions.q34,
+                    details: value,
+                },
+            },
+        }));
+    };
+
+    const handleq35a = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q35: {
+                    ...prevState.questions.q35,
+                    a: {
+                        ...prevState.questions.q35.a,
+                        value: value == "yes",
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq35b = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q35: {
+                    ...prevState.questions.q35,
+                    b: {
+                        ...prevState.questions.q35.b,
+                        value: value == "yes",
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq35adet = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q35: {
+                    ...prevState.questions.q35,
+                    a: {
+                        ...prevState.questions.q35.a,
+                        details: value,
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq35bdetdf = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q35: {
+                    ...prevState.questions.q35,
+                    b: {
+                        ...prevState.questions.q35.b,
+                        details: {
+                            ...prevState.questions.q35.b.details,
+                            date_filed: value,
+                        },
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq35bdetst = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q35: {
+                    ...prevState.questions.q35,
+                    b: {
+                        ...prevState.questions.q35.b,
+                        details: {
+                            ...prevState.questions.q35.b.details,
+                            case: value,
+                        },
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq36 = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q36: {
+                    ...prevState.questions.q36,
+                    value: value == "yes",
+                },
+            },
+        }));
+    };
+
+    const handleq36dets = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q36: {
+                    ...prevState.questions.q36,
+                    details: value,
+                },
+            },
+        }));
+    };
+
+    const handleq37 = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q37: {
+                    ...prevState.questions.q37,
+                    value: value == "yes",
+                },
+            },
+        }));
+    };
+
+    const handleq37dets = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q37: {
+                    ...prevState.questions.q37,
+                    details: value,
+                },
+            },
+        }));
+    };
+
+    const handleq38a = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q38: {
+                    ...prevState.questions.q38,
+                    a: {
+                        ...prevState.questions.q38.a,
+                        value: value == "yes",
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq38b = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q38: {
+                    ...prevState.questions.q38,
+                    b: {
+                        ...prevState.questions.q38.b,
+                        value: value == "yes",
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq38adet = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q38: {
+                    ...prevState.questions.q38,
+                    a: {
+                        ...prevState.questions.q38.a,
+                        details: value,
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq38bdet = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q38: {
+                    ...prevState.questions.q38,
+                    b: {
+                        ...prevState.questions.q38.b,
+                        details: value,
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq39 = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q39: {
+                    ...prevState.questions.q39,
+                    value: value == "yes",
+                },
+            },
+        }));
+    };
+
+    const handleq39dets = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q39: {
+                    ...prevState.questions.q39,
+                    details: value,
+                },
+            },
+        }));
+    };
+
+    const handleq40a = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q40: {
+                    ...prevState.questions.q40,
+                    a: {
+                        ...prevState.questions.q40.a,
+                        value: value == "yes",
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq40b = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q40: {
+                    ...prevState.questions.q40,
+                    b: {
+                        ...prevState.questions.q40.b,
+                        value: value == "yes",
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq40c = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q40: {
+                    ...prevState.questions.q40,
+                    c: {
+                        ...prevState.questions.q40.c,
+                        value: value == "yes",
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq40adet = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q40: {
+                    ...prevState.questions.q40,
+                    a: {
+                        ...prevState.questions.q40.a,
+                        details: value,
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq40bdet = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q40: {
+                    ...prevState.questions.q40,
+                    b: {
+                        ...prevState.questions.q40.b,
+                        details: value,
+                    },
+                },
+            },
+        }));
+    };
+
+    const handleq40cdet = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            questions: {
+                ...prevState.questions,
+                q40: {
+                    ...prevState.questions.q40,
+                    c: {
+                        ...prevState.questions.q40.c,
+                        details: value,
+                    },
+                },
+            },
+        }));
+    };
+
     const handleResidentialAddressChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevState) => ({
@@ -149,20 +536,22 @@ export default function PersonalInfoForm() {
             },
         }));
     };
-    
+
+    console.log(formData);
+
     // Additional handleChange functions for other nested levels as needed
     const generalHandleChange = (e) => {
         const { name, value } = e.target;
-    
+
         // Split the name into nested keys
-        const keys = name.split('.');
-        
+        const keys = name.split(".");
+
         // Initialize a newFormData object
         let newFormData = { ...formData };
-    
+
         // Get the nested object to update
         let nestedObj = newFormData;
-    
+
         // Traverse the nested object to reach the deepest level
         for (let i = 0; i < keys.length - 1; i++) {
             if (!nestedObj[keys[i]]) {
@@ -170,15 +559,13 @@ export default function PersonalInfoForm() {
             }
             nestedObj = nestedObj[keys[i]];
         }
-    
+
         // Update the value at the deepest level
         nestedObj[keys[keys.length - 1]] = value;
-    
+
         // Update the state with the modified formData
         setFormData(newFormData);
-    }
-
-    console.log(formData)
+    };
 
     return (
         <>
@@ -590,7 +977,8 @@ export default function PersonalInfoForm() {
                             name={"zipcode"}
                             className="col-span-1"
                             value={
-                                formData.personal_information.permanent_address.zipcode
+                                formData.personal_information.permanent_address
+                                    .zipcode
                             }
                             onChange={handlePermanentAddressChange}
                         />
@@ -675,7 +1063,8 @@ export default function PersonalInfoForm() {
                             name={"middlename"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.spouse_name.middlename
+                                formData.family_background.spouse_name
+                                    .middlename
                             }
                             onChange={handleSpouseName}
                         />
@@ -703,7 +1092,8 @@ export default function PersonalInfoForm() {
                             label={"First Name"}
                             name={"firstname"}
                             value={
-                                formData.family_background.fathers_name.firstname
+                                formData.family_background.fathers_name
+                                    .firstname
                             }
                             onChange={handleFatherName}
                         />
@@ -712,7 +1102,8 @@ export default function PersonalInfoForm() {
                             name={"middlename"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.fathers_name.middlename
+                                formData.family_background.fathers_name
+                                    .middlename
                             }
                             onChange={handleFatherName}
                         />
@@ -721,7 +1112,8 @@ export default function PersonalInfoForm() {
                             name={"extension"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.fathers_name.extension
+                                formData.family_background.fathers_name
+                                    .extension
                             }
                             onChange={handleFatherName}
                         />
@@ -733,7 +1125,8 @@ export default function PersonalInfoForm() {
                             name={"maidenname"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.mothers_name.maidenname
+                                formData.family_background.mothers_name
+                                    .maidenname
                             }
                             onChange={handleMotherName}
                         />
@@ -751,7 +1144,8 @@ export default function PersonalInfoForm() {
                             name={"firstname"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.mothers_name.firstname
+                                formData.family_background.mothers_name
+                                    .firstname
                             }
                             onChange={handleMotherName}
                         />
@@ -760,13 +1154,14 @@ export default function PersonalInfoForm() {
                             name={"middlename"}
                             className={"col-span-1"}
                             value={
-                                formData.family_background.mothers_name.middlename
+                                formData.family_background.mothers_name
+                                    .middlename
                             }
                             onChange={handleMotherName}
                         />
                     </div>
                     <hr className="bg-black mb-4" />
-                    <InputFields 
+                    <InputFields
                         formData={formData}
                         setFormData={setFormData}
                     />
@@ -777,7 +1172,9 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Name of School"}
                             className={"col-span-2"}
-                            name={"educational_background.elementary.school_name"}
+                            name={
+                                "educational_background.elementary.school_name"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
@@ -789,14 +1186,18 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Start"}
                             type="date"
-                            name={"educational_background.elementary.period_of_attendance.from"}
+                            name={
+                                "educational_background.elementary.period_of_attendance.from"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
                             type="date"
-                            name={"educational_background.elementary.period_of_attendance.to"}
+                            name={
+                                "educational_background.elementary.period_of_attendance.to"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
@@ -805,20 +1206,26 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Highest Level/Units Earned"}
                             className={"col-span-2"}
-                            name={"educational_background.elementary.highest_unit"}
+                            name={
+                                "educational_background.elementary.highest_unit"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
                             type="date"
-                            name={"educational_background.elementary.year_graduated"}
+                            name={
+                                "educational_background.elementary.year_graduated"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
                             className={"col-span-2"}
-                            name={"educational_background.elementary.scholarship"}
+                            name={
+                                "educational_background.elementary.scholarship"
+                            }
                             onChange={generalHandleChange}
                         />
                     </div>
@@ -827,7 +1234,9 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Name of School"}
                             className={"col-span-2"}
-                            name={"educational_background.secondary.school_name"}
+                            name={
+                                "educational_background.secondary.school_name"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
@@ -839,14 +1248,18 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Start"}
                             type="date"
-                            name={"educational_background.secondary.period_of_attendance.from"}
+                            name={
+                                "educational_background.secondary.period_of_attendance.from"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
                             type="date"
-                            name={"educational_background.secondary.period_of_attendance.to"}
+                            name={
+                                "educational_background.secondary.period_of_attendance.to"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
@@ -855,20 +1268,26 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Highest Level/Units Earned"}
                             className={"col-span-2"}
-                            name={"educational_background.secondary.highest_unit"}
+                            name={
+                                "educational_background.secondary.highest_unit"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
                             type="date"
-                            name={"educational_background.secondary.year_graduated"}
+                            name={
+                                "educational_background.secondary.year_graduated"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
                             className={"col-span-2"}
-                            name={"educational_background.secondary.scholarship"}
+                            name={
+                                "educational_background.secondary.scholarship"
+                            }
                             onChange={generalHandleChange}
                         />
                     </div>
@@ -877,7 +1296,9 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Name of School"}
                             className={"col-span-2"}
-                            name={"educational_background.vocational.school_name"}
+                            name={
+                                "educational_background.vocational.school_name"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
@@ -889,14 +1310,18 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Start"}
                             type="date"
-                            name={"educational_background.vocational.period_of_attendance.from"}
+                            name={
+                                "educational_background.vocational.period_of_attendance.from"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
                             type="date"
-                            name={"educational_background.vocational.period_of_attendance.to"}
+                            name={
+                                "educational_background.vocational.period_of_attendance.to"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
@@ -905,20 +1330,26 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Highest Level/Units Earned"}
                             className={"col-span-2"}
-                            name={"educational_background.vocational.highest_unit"}
+                            name={
+                                "educational_background.vocational.highest_unit"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
                             type="date"
-                            name={"educational_background.vocational.year_graduated"}
+                            name={
+                                "educational_background.vocational.year_graduated"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
                             className={"col-span-2"}
-                            name={"educational_background.vocational.scholarship"}
+                            name={
+                                "educational_background.vocational.scholarship"
+                            }
                             onChange={generalHandleChange}
                         />
                     </div>
@@ -939,14 +1370,18 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Start"}
                             type="date"
-                            name={"educational_background.college.period_of_attendance.from"}
+                            name={
+                                "educational_background.college.period_of_attendance.from"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
                             type="date"
-                            name={"educational_background.college.period_of_attendance.to"}
+                            name={
+                                "educational_background.college.period_of_attendance.to"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
@@ -961,7 +1396,9 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Year Graduated"}
                             type="date"
-                            name={"educational_background.college.year_graduated"}
+                            name={
+                                "educational_background.college.year_graduated"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
@@ -977,26 +1414,34 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Name of School"}
                             className={"col-span-2"}
-                            name={"educational_background.graduate_studies.school_name"}
+                            name={
+                                "educational_background.graduate_studies.school_name"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Basic Education/Degree/Course"}
                             className={"col-span-2"}
-                            name={"educational_background.graduate_studies.degree"}
+                            name={
+                                "educational_background.graduate_studies.degree"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Start"}
                             type="date"
-                            name={"educational_background.graduate_studies.period_of_attendance.from"}
+                            name={
+                                "educational_background.graduate_studies.period_of_attendance.from"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"End"}
                             type="date"
-                            name={"educational_background.graduate_studies.period_of_attendance.to"}
+                            name={
+                                "educational_background.graduate_studies.period_of_attendance.to"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
@@ -1005,32 +1450,38 @@ export default function PersonalInfoForm() {
                         <CInput
                             label={"Highest Level/Units Earned"}
                             className={"col-span-2"}
-                            name={"educational_background.graduate_studies.highest_unit"}
+                            name={
+                                "educational_background.graduate_studies.highest_unit"
+                            }
                             onChange={generalHandleChange}
                         />
                         <CInput
                             label={"Year Graduated"}
                             type="date"
-                            name={"educational_background.graduate_studies.year_graduated"}
+                            name={
+                                "educational_background.graduate_studies.year_graduated"
+                            }
                             onChange={generalHandleChange}
                             className={"col-span-1"}
                         />
                         <CInput
                             label={"Scholarship/Academic Honors Received"}
                             className={"col-span-2"}
-                            name={"educational_background.graduate_studies.scholarship"}
+                            name={
+                                "educational_background.graduate_studies.scholarship"
+                            }
                             onChange={generalHandleChange}
                         />
                     </div>
                 </FormContainer>
                 <FormContainer title={"Civil Service Eligibility"}>
-                    <InputFieldCivil 
+                    <InputFieldCivil
                         formData={formData}
                         setFormData={setFormData}
                     />
                 </FormContainer>
                 <FormContainer title={"Work Experience"}>
-                    <InputFieldWE 
+                    <InputFieldWE
                         formData={formData}
                         setFormData={setFormData}
                     />
@@ -1040,7 +1491,7 @@ export default function PersonalInfoForm() {
                         "Voluntary Work or Involvement in Civic / Non-Government / People / Voluntary Organization/s"
                     }
                 >
-                    <InputFieldVW 
+                    <InputFieldVW
                         formData={formData}
                         setFormData={setFormData}
                     />
@@ -1050,13 +1501,13 @@ export default function PersonalInfoForm() {
                         "Learning and Development (L&D) Interventions/Training Programs Attended"
                     }
                 >
-                    <InputFieldLAD 
+                    <InputFieldLAD
                         formData={formData}
                         setFormData={setFormData}
                     />
                 </FormContainer>
                 <FormContainer title={"Other Information"}>
-                    <InputFieldOI 
+                    <InputFieldOI
                         formData={formData}
                         setFormData={setFormData}
                     />
@@ -1070,88 +1521,179 @@ export default function PersonalInfoForm() {
                         you will be apppointed,
                     </div>
                     <div>a. within the third degree?</div>
-                    <CRadio name={"Yes"} id={"floating_a34"} type="radio" 
+                    <CRadio
+                        name={"Yes34a"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq34a}
                         checked={formData.questions.q34.a}
                     />
-                    <CRadio name={"No"} id={"floating_a34"} type="radio" 
-                        checked={formData.questions.q34.b}
+                    <CRadio
+                        name={"No34a"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq34a}
+                        checked={!formData.questions.q34.a}
                     />
                     <div>
                         b. within the fourth degree (for Local Government Unit -
                         Career Employees)?
                     </div>
-                    <CRadio name={"Yes"} id={"floating_b34"} type="radio" />
-                    <CRadio name={"No"} id={"floating_b34"} type="radio" />
-                    <div className="grid md:grid-cols-10  mb-4">
-                        <div className="col-span-1">If YES, give details:</div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="details"
-                        />
-                    </div>
+                    <CRadio
+                        name={"Yes34b"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq34b}
+                        checked={formData.questions.q34.b}
+                    />
+                    <CRadio
+                        name={"No34b"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq34b}
+                        checked={!formData.questions.q34.b}
+                    />
+                    {formData.questions.q34.b && (
+                        <div className="grid md:grid-cols-10  mb-4">
+                            <div className="col-span-1">
+                                If YES, give details:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="details"
+                                value={formData.questions.q34.details}
+                                onChange={handleq34det}
+                            />
+                        </div>
+                    )}
                     <div>35.</div>
                     <div>
                         a. Have you ever been found guilty of any administrative
                         offense?
                     </div>
-                    <CRadio name={"Yes"} id={"floating_a35"} type="radio" />
-                    <CRadio name={"No"} id={"floating_a35"} type="radio" />
-                    <div className="grid md:grid-cols-10 mb-4">
-                        <div className="col-span-1">If YES, give details:</div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="details"
-                        />
-                    </div>
+                    <CRadio
+                        name={"Yes35a"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq35a}
+                        checked={formData.questions.q35.a.value}
+                    />
+                    <CRadio
+                        name={"No35a"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq35a}
+                        checked={!formData.questions.q35.a.value}
+                    />
+                    {formData.questions.q35.a.value && (
+                        <div className="grid md:grid-cols-10 mb-4">
+                            <div className="col-span-1">
+                                If YES, give details:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="details"
+                                value={formData.questions.q35.a.details}
+                                onChange={handleq35adet}
+                            />
+                        </div>
+                    )}
                     <div>
                         b. Have you been criminally charged before any court?
                     </div>
-                    <CRadio name={"Yes"} id={"floating_b35"} type="radio" />
-                    <CRadio name={"No"} id={"floating_b35"} type="radio" />
-                    <div className="col-span-1">If YES, give details:</div>
-                    <div className="grid md:grid-cols-10 md:gap-x-6 ">
-                        <div className="col-span-3">Date Filed:</div>
-                        <div className="col-span-3">Status of Case/s:</div>
-                    </div>
-                    <div className="grid md:grid-cols-10 md:gap-x-6 mb-4">
-                        <input
-                            type={"date"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="Date Filed"
-                        />
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="Status"
-                        />
-                    </div>
+                    <CRadio
+                        name={"Yes"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq35b}
+                        checked={formData.questions.q35.b.value}
+                    />
+                    <CRadio
+                        name={"No"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq35b}
+                        checked={!formData.questions.q35.b.value}
+                    />
+                    {formData.questions.q35.b.value && (
+                        <>
+                            <div className="col-span-1">
+                                If YES, give details:
+                            </div>
+                            <div className="grid md:grid-cols-10 md:gap-x-6 ">
+                                <div className="col-span-3">Date Filed:</div>
+                                <div className="col-span-3">
+                                    Status of Case/s:
+                                </div>
+                            </div>
+                            <div className="grid md:grid-cols-10 md:gap-x-6 mb-4">
+                                <input
+                                    type={"date"}
+                                    name={"cdetails"}
+                                    id={"cdetails"}
+                                    className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                    placeholder="Date Filed"
+                                    value={
+                                        formData.questions.q35.b.details
+                                            .date_filed
+                                    }
+                                    onChange={handleq35bdetdf}
+                                />
+                                <input
+                                    type={"text"}
+                                    name={"cdetails"}
+                                    id={"cdetails"}
+                                    className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                    placeholder="Status"
+                                    value={
+                                        formData.questions.q35.b.details.case
+                                    }
+                                    onChange={handleq35bdetst}
+                                />
+                            </div>
+                        </>
+                    )}
                     <div>
                         36. Have you ever been convicted of any crime or
                         violation of any law, decree, ordinance or regulation by
                         any court or tribunal?
                     </div>
-                    <CRadio name={"Yes"} id={"floating_36"} type="radio" />
-                    <CRadio name={"No"} id={"floating_36"} type="radio" />
-                    <div className="grid md:grid-cols-10 mb-4">
-                        <div className="col-span-1">If YES, give details:</div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="details"
-                        />
-                    </div>
+                    <CRadio
+                        name={"Yes36"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq36}
+                        checked={formData.questions.q36.value}
+                    />
+                    <CRadio
+                        name={"No36"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq36}
+                        checked={!formData.questions.q36.value}
+                    />
+                    {formData.questions.q36.value && (
+                        <div className="grid md:grid-cols-10 mb-4">
+                            <div className="col-span-1">
+                                If YES, give details:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="details"
+                                value={formData.questions.q36.details}
+                                onChange={handleq36dets}
+                            />
+                        </div>
+                    )}
                     <div>
                         37. Have you ever been separated from the service in any
                         of the following modes: resignation, retirement, dropped
@@ -1159,72 +1701,142 @@ export default function PersonalInfoForm() {
                         finished contract or phased out (abolition) in the
                         public or private sector?
                     </div>
-                    <CRadio name={"Yes"} id={"floating_37"} type="radio" />
-                    <CRadio name={"No"} id={"floating_37"} type="radio" />
-                    <div className="grid md:grid-cols-10 mb-4">
-                        <div className="col-span-1">If YES, give details:</div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="details"
-                        />
-                    </div>
+                    <CRadio
+                        name={"Yes37"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq37}
+                        checked={formData.questions.q37.value}
+                    />
+                    <CRadio
+                        name={"No37"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq37}
+                        checked={!formData.questions.q37.value}
+                    />
+                    {formData.questions.q37.value && (
+                        <div className="grid md:grid-cols-10 mb-4">
+                            <div className="col-span-1">
+                                If YES, give details:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="details"
+                                value={formData.questions.q37.details}
+                                onChange={handleq37dets}
+                            />
+                        </div>
+                    )}
                     <div>38.</div>
                     <div>
                         a. Have you ever been a candidate in a national or local
                         election held within the last year (except Barangay
                         election)?
                     </div>
-                    <CRadio name={"Yes"} id={"floating_b38"} type="radio" />
-                    <CRadio name={"No"} id={"floating_b38"} type="radio" />
-                    <div className="grid md:grid-cols-10  mb-4">
-                        <div className="col-span-1">If YES, give details:</div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="details"
-                        />
-                    </div>
+                    <CRadio
+                        name={"Yes38a"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq38a}
+                        checked={formData.questions.q38.a.value}
+                    />
+                    <CRadio
+                        name={"No38a"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq38a}
+                        checked={!formData.questions.q38.a.value}
+                    />
+                    {formData.questions.q38.a.value && (
+                        <div className="grid md:grid-cols-10  mb-4">
+                            <div className="col-span-1">
+                                If YES, give details:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="details"
+                                value={formData.questions.q38.a.details}
+                                onChange={handleq38adet}
+                            />
+                        </div>
+                    )}
                     <div>
                         b. Have you resigned from the government service during
                         the three (3)-month period before the last election to
                         promote/actively campaign for a national or local
                         candidate?
                     </div>
-                    <CRadio name={"Yes"} id={"floating_b38"} type="radio" />
-                    <CRadio name={"No"} id={"floating_b38"} type="radio" />
-                    <div className="grid md:grid-cols-10  mb-4">
-                        <div className="col-span-1">If YES, give details:</div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="details"
-                        />
-                    </div>
+                    <CRadio
+                        name={"Yes38b"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq38b}
+                        checked={formData.questions.q38.b.value}
+                    />
+                    <CRadio
+                        name={"No38b"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq38b}
+                        checked={!formData.questions.q38.b.value}
+                    />
+                    {formData.questions.q38.b.value && (
+                        <div className="grid md:grid-cols-10  mb-4">
+                            <div className="col-span-1">
+                                If YES, give details:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="details"
+                                value={formData.questions.q38.b.details}
+                                onChange={handleq38bdet}
+                            />
+                        </div>
+                    )}
                     <div>
                         39. Have you acquired the status of an immigrant or
                         permanent resident of another country?
                     </div>
-                    <CRadio name={"Yes"} id={"floating_39"} type="radio" />
-                    <CRadio name={"No"} id={"floating_39"} type="radio" />
-                    <div className="grid md:grid-cols-10 mb-4">
-                        <div className="col-span-1">
-                            If YES, give details (country):
+                    <CRadio
+                        name={"Yes39"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq39}
+                        checked={formData.questions.q39.value}
+                    />
+                    <CRadio
+                        name={"No39"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq39}
+                        checked={!formData.questions.q39.value}
+                    />
+                    {formData.questions.q39.value && (
+                        <div className="grid md:grid-cols-10 mb-4">
+                            <div className="col-span-1">
+                                If YES, give details (country):
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="country"
+                                value={formData.questions.q39.details}
+                                onChange={handleq39dets}
+                            />
                         </div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="country"
-                        />
-                    </div>
+                    )}
                     <div>
                         40. Pursuant to: (a) Indigenous People's Act (RA 8371);
                         (b) Magna Carta for Disabled Persons (RA 7277); and (c)
@@ -1232,50 +1844,98 @@ export default function PersonalInfoForm() {
                         answer the following
                     </div>
                     <div>a. Are you a member of any indigenous group?</div>
-                    <CRadio name={"Yes"} id={"floating_b38"} type="radio" />
-                    <CRadio name={"No"} id={"floating_b38"} type="radio" />
-                    <div className="grid md:grid-cols-10  mb-4">
-                        <div className="col-span-1">
-                            If YES, please specify:
+                    <CRadio
+                        name={"Yes40a"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq40a}
+                        checked={formData.questions.q40.a.value}
+                    />
+                    <CRadio
+                        name={"No40a"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq40a}
+                        checked={!formData.questions.q40.a.value}
+                    />
+                    {formData.questions.q40.a.value && (
+                        <div className="grid md:grid-cols-10  mb-4">
+                            <div className="col-span-1">
+                                If YES, please specify:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="details"
+                                value={formData.questions.q40.a.details}
+                                onChange={handleq40adet}
+                            />
                         </div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="details"
-                        />
-                    </div>
+                    )}
                     <div>b. Are you a person with disability?</div>
-                    <CRadio name={"Yes"} id={"floating_b38"} type="radio" />
-                    <CRadio name={"No"} id={"floating_b38"} type="radio" />
-                    <div className="grid md:grid-cols-10  mb-4">
-                        <div className="col-span-1">
-                            If YES, please specify ID No:
+                    <CRadio
+                        name={"Yes40b"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq40b}
+                        checked={formData.questions.q40.b.value}
+                    />
+                    <CRadio
+                        name={"No40b"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq40b}
+                        checked={!formData.questions.q40.b.value}
+                    />
+                    {formData.questions.q40.b.value && (
+                        <div className="grid md:grid-cols-10  mb-4">
+                            <div className="col-span-1">
+                                If YES, please specify ID No:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="ID No."
+                                value={formData.questions.q40.b.details}
+                                onChange={handleq40bdet}
+                            />
                         </div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="ID No."
-                        />
-                    </div>
-                    <div>Are you a solo parent?</div>
-                    <CRadio name={"Yes"} id={"floating_b38"} type="radio" />
-                    <CRadio name={"No"} id={"floating_b38"} type="radio" />
-                    <div className="grid md:grid-cols-10  mb-4">
-                        <div className="col-span-1">
-                            If YES, please specify ID No:
+                    )}
+                    <div>c. Are you a solo parent?</div>
+                    <CRadio
+                        name={"Yes40c"}
+                        label={"Yes"}
+                        value={"yes"}
+                        onChange={handleq40c}
+                        checked={formData.questions.q40.c.value}
+                    />
+                    <CRadio
+                        name={"No40c"}
+                        label={"No"}
+                        value={"no"}
+                        onChange={handleq40c}
+                        checked={!formData.questions.q40.c.value}
+                    />
+                    {formData.questions.q40.c.value && (
+                        <div className="grid md:grid-cols-10  mb-4">
+                            <div className="col-span-1">
+                                If YES, please specify ID No:
+                            </div>
+                            <input
+                                type={"text"}
+                                name={"cdetails"}
+                                id={"cdetails"}
+                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
+                                placeholder="ID No."
+                                value={formData.questions.q40.c.details}
+                                onChange={handleq40cdet}
+                            />
                         </div>
-                        <input
-                            type={"text"}
-                            name={"cdetails"}
-                            id={"cdetails"}
-                            className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer col-span-3`}
-                            placeholder="ID No."
-                        />
-                    </div>
+                    )}
                 </FormContainer>
                 <button
                     type="submit"
