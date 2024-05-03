@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
 function InputFieldWE({ formData, setFormData }) {
-
     const handleChange = (index, key, value) => {
         const newFields = [...formData.work_experiences];
         newFields[index][key] = value;
 
-        let newFormData = {...formData};
+        let newFormData = { ...formData };
         newFormData.work_experiences = newFields;
 
         setFormData(newFormData);
@@ -27,7 +26,7 @@ function InputFieldWE({ formData, setFormData }) {
             },
         ];
 
-        let newFormData = {...formData};
+        let newFormData = { ...formData };
         newFormData.work_experiences = newFields;
 
         setFormData(newFormData);
@@ -37,7 +36,7 @@ function InputFieldWE({ formData, setFormData }) {
         const newFields = [...formData.work_experiences];
         newFields.splice(index, 1);
 
-        let newFormData = {...formData};
+        let newFormData = { ...formData };
         newFormData.work_experiences = newFields;
 
         setFormData(newFormData);
@@ -54,11 +53,7 @@ function InputFieldWE({ formData, setFormData }) {
                             value={field.to}
                             name="to"
                             onChange={(e) =>
-                                handleChange(
-                                    index,
-                                    "to",
-                                    e.target.value
-                                )
+                                handleChange(index, "to", e.target.value)
                             }
                             className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                         />
@@ -76,11 +71,7 @@ function InputFieldWE({ formData, setFormData }) {
                             value={field.from}
                             name="from"
                             onChange={(e) =>
-                                handleChange(
-                                    index,
-                                    "from",
-                                    e.target.value
-                                )
+                                handleChange(index, "from", e.target.value)
                             }
                             className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                         />
@@ -95,14 +86,10 @@ function InputFieldWE({ formData, setFormData }) {
                         <input
                             type="text"
                             placeholder=" "
-                            value={field.title}
-                            name="title"
+                            value={field.name}
+                            name="name"
                             onChange={(e) =>
-                                handleChange(
-                                    index,
-                                    "title",
-                                    e.target.value
-                                )
+                                handleChange(index, "name", e.target.value)
                             }
                             className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                         />
@@ -142,11 +129,7 @@ function InputFieldWE({ formData, setFormData }) {
                             value={field.salary}
                             name="salary"
                             onChange={(e) =>
-                                handleChange(
-                                    index,
-                                    "salary",
-                                    e.target.value
-                                )
+                                handleChange(index, "salary", e.target.value)
                             }
                             className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                         />
@@ -155,6 +138,24 @@ function InputFieldWE({ formData, setFormData }) {
                             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                             Monthly Salary
+                        </label>
+                    </div>
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            placeholder=" "
+                            value={field.pay_grade}
+                            name="pay_grade"
+                            onChange={(e) =>
+                                handleChange(index, "pay_grade", e.target.value)
+                            }
+                            className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
+                        />
+                        <label
+                            htmlFor={"pay_grade"}
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            Salary Pay Grade
                         </label>
                     </div>
                     <div className="relative z-0 w-full mb-5 group">

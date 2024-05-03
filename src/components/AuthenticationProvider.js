@@ -9,8 +9,6 @@ export const AuthenticationProvider = ({ children }) => {
     const [user, _setUser] = useState(null);
 
     const setUser = (_user) => {
-        console.log(_user)
-        
         let isSuperAdmin = false;
 
         if(!_user?.roles) {
