@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CInput, CRadio, FormContainer } from ".";
 import InputFieldCivil from "./InputFieldCivil";
 import InputFieldLAD from "./InputFieldLAD";
@@ -7,9 +7,30 @@ import InputFieldVW from "./InputFieldVW";
 import InputFieldWE from "./InputFieldWE";
 import InputFields from "./InputFields";
 import { defaultVal } from "./constants/constant";
+import { useParams } from "react-router-dom";
+import { createPDS, getPDS, updatePDS } from "../../../api/employee.crud";
+import { createToast } from "../../forms";
 
 export default function PersonalInfoForm() {
-    const [formData, setFormData] = useState(defaultVal);
+    const [formData, setFormData] = useState({ ...defaultVal });
+
+    const { pdsId } = useParams();
+
+    const topDivRef = useRef();
+
+    useEffect(() => {
+
+        if (!pdsId) {
+            return;
+        }
+
+        getPDS(pdsId).then((resp) => {
+            setFormData({
+                ...defaultVal,
+                ...resp.data,
+            });
+        }).catch(() => { });
+    }, []);
 
     const handlePersonalInfoChange = (event) => {
         const { name, value } = event.target;
@@ -537,8 +558,6 @@ export default function PersonalInfoForm() {
         }));
     };
 
-    console.log(formData);
-
     // Additional handleChange functions for other nested levels as needed
     const generalHandleChange = (e) => {
         const { name, value } = e.target;
@@ -567,9 +586,39 @@ export default function PersonalInfoForm() {
         setFormData(newFormData);
     };
 
+    const onPdsSubmit = (e) => {
+        e.preventDefault();
+
+        if (pdsId) {
+            updatePDS(pdsId, formData).then((resp) => {
+                createToast('success', "Employee details updated successfully.");
+                setFormData({
+                    ...defaultVal,
+                    ...resp.data,
+                });
+            }).catch(() => {
+                setFormData({ ...defaultVal });
+                createToast('error', "Something went wrong.");
+            }).finally(() => {
+                topDivRef.current.scrollIntoView();
+            });
+        }
+        else {
+            createPDS(formData).then((resp) => {
+                createToast('success', "Employee details successfully added.");
+            }).catch(() => {
+                createToast('error', "Something went wrong.");
+            }).finally(() => {
+                setFormData({ ...defaultVal });
+                topDivRef.current.scrollIntoView();
+            });
+        }
+    }
+
     return (
         <>
-            <form className="w-full mx-auto">
+            <div ref={topDivRef} />
+            <form className="w-full mx-auto" onSubmit={onPdsSubmit}>
                 <FormContainer title={"Personal Information"}>
                     <CInput
                         label={"Surname"}
@@ -682,19 +731,19 @@ export default function PersonalInfoForm() {
                         />
                         {formData.personal_information.civil_status ==
                             "other" && (
-                            <input
-                                type={"text"}
-                                name={"civil_status_other"}
-                                id={"floating_s"}
-                                className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
-                                placeholder="Specify"
-                                value={
-                                    formData.personal_information
-                                        .civil_status_other
-                                }
-                                onChange={handlePersonalInfoChange}
-                            />
-                        )}
+                                <input
+                                    type={"text"}
+                                    name={"civil_status_other"}
+                                    id={"floating_s"}
+                                    className={`block px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
+                                    placeholder="Specify"
+                                    value={
+                                        formData.personal_information
+                                            .civil_status_other
+                                    }
+                                    onChange={handlePersonalInfoChange}
+                                />
+                            )}
                     </div>
                     <div className="grid md:grid-cols-3 md:gap-6 mt-2">
                         <CInput
@@ -1941,7 +1990,7 @@ export default function PersonalInfoForm() {
                     type="submit"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                    Submit
+                    {pdsId ? 'Edit' : 'Save'}
                 </button>
             </form>
         </>
