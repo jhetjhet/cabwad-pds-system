@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { CSearchBar, createToast } from "../forms";
 import ReactPaginate from "react-paginate";
-import { listsEmployee } from "../../api/employee.crud";
+import { deletePDS, listsEmployee } from "../../api/employee.crud";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthenticationProvider";
 
 
 
@@ -10,7 +11,8 @@ export default function EmployeePage() {
     const [employees, setEmployees] = useState([]);
     const [page, setPage] = useState(0);
     const [pageCount, setPageCount] = useState(1);
-    const [targetUser, setTargetUser] = useState();
+
+    const {user: authUser} = useAuth();
 
     const navigate = useNavigate();
 
@@ -40,23 +42,28 @@ export default function EmployeePage() {
     }
 
     const onEmployeeDelete = (id, name) => {
-        console.log(id, name);
-        createToast('success', `User "${name}" is deleted successfuly!`);
-        // deleteUser(id).then((() => {
-        // })).catch(() => {
-        //     createToast('error', "Something went wrong.");
-        // }).finally(() => {
-        //     initUsersList(page);
-        // });
+        deletePDS(id).then((resp) => {
+            createToast('success', `User "${name}" is deleted successfuly!`);
+        }).catch((err) => {
+            createToast('error', "Something went wrong.");
+        }).finally(() => {
+            initEmployees(page);
+        });
     }
 
     const handlePageClick = (e) => {
         setPage(e.selected);
-        // initUsersList(e.selected);
+        initEmployees(e.selected);
+    }
+
+    const onPdsEdit = (id) => {
+        navigate(`/pds-form/${id}`, {
+            replace: true,
+        });
     }
 
     return (
-        <div className="text-gray-900 bg-gray-200 min-h-[32rem] flex flex-col">
+        <div className="bg-gray-100 min-h-[32rem] rounded-lg shadow-md flex flex-col">
 
             <div className="p-4 flex">
                 <h1 className="text-3xl">
@@ -102,16 +109,18 @@ export default function EmployeePage() {
                                 <td className="p-3 px-5 flex justify-end">
                                     <button type="button" className="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                                         onClick={() => {
-                                            // setTargetUser(employee);
+                                            onPdsEdit(employee._id);
                                         }}
                                     >
-                                        PDS
+                                        Edit
                                     </button>
-                                    <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                                        onClick={() => onEmployeeDelete(employee._id, employee?.personal_information?.name?.firstname)}
-                                    >
-                                        Delete
-                                    </button>
+                                    {authUser?.is_super_admin && (
+                                        <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                                            onClick={() => onEmployeeDelete(employee._id, employee?.personal_information?.name?.firstname)}
+                                        >
+                                            Delete
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))}
