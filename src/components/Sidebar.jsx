@@ -1,5 +1,6 @@
 import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import { Link, NavLink } from 'react-router-dom';
 
 const CustomNavLink = ({ to, children }) => {
@@ -42,6 +43,11 @@ export default function Sidebar() {
 				<CustomNavLink to={"accounts"}>
 					<AdminPanelSettingsOutlinedIcon className="mr-1" />
 					Accounts
+				</CustomNavLink>
+
+				<CustomNavLink to={"employees"}>
+					<BadgeOutlinedIcon className="mr-1" />
+					Employees
 				</CustomNavLink>
 			</nav>
 			{/* <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
