@@ -9,6 +9,7 @@ import { AuthenticationProvider } from './components/AuthenticationProvider';
 import PrivatePage from './components/PrivatePage';
 import { Bounce, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import EmployeePage from "./components/pages/EmployeePage";
 
 const router = createBrowserRouter([
 	{
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
 			{
 				path: "accounts",
 				element: <AccountsPage />,
+			},
+			{
+				path: "employees",
+				element: <EmployeePage />,
 			},
 		]
 	},
