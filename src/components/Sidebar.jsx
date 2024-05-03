@@ -26,18 +26,9 @@ export default function Sidebar() {
 				</Link>
 			</div>
 			<nav className="text-lg font-semibold pt-3">
-				{/* <a href="index.html" className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-					<i className="fas fa-tachometer-alt mr-3"></i>
-					Accounts
-				</a>
-				<a href="blank.html" className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-					<i className="fas fa-sticky-note mr-3"></i>
-					Employees
-				</a> */}
-
 				<CustomNavLink to={"pds-form"}>
 					<PeopleOutlineOutlinedIcon className="mr-1" />
-					PDS
+					PDS Form
 				</CustomNavLink>
 
 				<CustomNavLink to={"accounts"}>
@@ -50,10 +41,6 @@ export default function Sidebar() {
 					Employees
 				</CustomNavLink>
 			</nav>
-			{/* <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
-					<i className="fas fa-arrow-circle-up mr-3"></i>
-					Upgrade to Pro!
-				</a> */}
 		</aside>
 	);
 }

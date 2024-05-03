@@ -5,6 +5,7 @@ import { createUser, deleteUser, listUsers, updateUser } from "../../api/auth.cr
 import Select from 'react-select';
 import { Field, Form, Formik } from "formik";
 import { Bounce, ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../AuthenticationProvider";
 
 const SUPER_ADMIN = 1;
 const ADMIN = 2;
@@ -136,6 +137,8 @@ export default function AccountsPage() {
 
     const [targetUser, setTargetUser] = useState();
 
+    const {user: authUser} = useAuth();
+
     useEffect(() => {
         initUsersList(page);
     }, []);
@@ -152,7 +155,6 @@ export default function AccountsPage() {
         }
 
         listUsers(params).then((resp) => {
-            console.log(resp.data);
             setPageCount(resp.data.totalPages);
             setUsers(resp.data?.users);
         });
@@ -178,7 +180,6 @@ export default function AccountsPage() {
         submitValue.roles = submitValue.roles.map((r) => r.value);
 
         if (targetUser) {
-            console.log("update: ", targetUser._id)
             updateUser(targetUser._id, submitValue).then((resp) => {
                 createToast('success', `User "${targetUser.username}" is updated successfuly!`);
                 setTargetUser(null);
@@ -210,7 +211,7 @@ export default function AccountsPage() {
     }
 
     return (
-        <div className="text-gray-900 bg-gray-200 min-h-[32rem] flex flex-col">
+        <div className="bg-gray-100 min-h-[32rem] rounded-lg shadow-md flex flex-col">
 
             <UserFormModal
                 show={showUserForm}
@@ -230,14 +231,16 @@ export default function AccountsPage() {
                 <div className="">
                     <CSearchBar onSearch={onSearch} />
                 </div>
-                <button type="button" className="ml-3 text-md bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                    onClick={() => {
-                        setTargetUser(null);
-                        setShowUserForm(true);
-                    }}
-                >
-                    create
-                </button>
+                {authUser?.is_super_admin && (
+                    <button type="button" className="ml-3 text-md bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                        onClick={() => {
+                            setTargetUser(null);
+                            setShowUserForm(true);
+                        }}
+                    >
+                        create
+                    </button>
+                )}
             </div>
             <div className="px-3 py-4 flex justify-center">
                 <table className="w-full text-md bg-white shadow-md rounded mb-4">
@@ -256,7 +259,7 @@ export default function AccountsPage() {
                                     <p>{[...user.roles.map((role) => role.name)].join(", ")}</p>
                                 </td>
                                 <td className="p-3 px-5 flex justify-end">
-                                    <button type="button" className="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                                    <button type="button" disabled={!authUser?.is_super_admin} className="disabled:opacity-50 mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                                         onClick={() => {
                                             setTargetUser(user);
                                             setShowUserForm(true);
@@ -264,11 +267,13 @@ export default function AccountsPage() {
                                     >
                                         Edit
                                     </button>
-                                    <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                                        onClick={() => onUserDelete(user._id, user.name)}
-                                    >
-                                        Delete
-                                    </button>
+                                    {authUser?.is_super_admin && (
+                                        <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                                            onClick={() => onUserDelete(user._id, user.name)}
+                                        >
+                                            Delete
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))}

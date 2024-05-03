@@ -10,6 +10,7 @@ import PrivatePage from './components/PrivatePage';
 import { Bounce, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import EmployeePage from "./components/pages/EmployeePage";
+import NotFoundPage from "./components/pages/NotFoundPage";
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
 				<MainLayout />
 			</PrivatePage>
 		),
+		errorElement: <NotFoundPage />,
 		children: [
 			{
 				path: "",
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "pds-form",
+				element: <PDSFormPage />
+			},
+			{
+				path: "pds-form/:pdsId",
 				element: <PDSFormPage />
 			},
 			{
@@ -41,6 +47,7 @@ const router = createBrowserRouter([
 	{
 		path: "/login",
 		element: <LoginPage />,
+		errorElement: <NotFoundPage />,
 	}
 ]);
 
