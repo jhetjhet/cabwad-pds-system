@@ -23,6 +23,9 @@ export const CInput = ({
     type = "text",
     name,
     className,
+    value,
+    onChange,
+    isRequired = false,
 }) => {
     return (
         <div className={`relative z-0 w-full mb-5 group ${className}`}>
@@ -32,7 +35,9 @@ export const CInput = ({
                 id={name}
                 className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                 placeholder=" "
-                required
+                value={value}
+                onChange={onChange}
+                required={isRequired}
             />
             <label
                 htmlFor={name}
@@ -44,10 +49,16 @@ export const CInput = ({
     );
 };
 
-export const CRadio = ({ name, id, className }) => {
+export const CRadio = ({ name, className, onChange, checked, value }) => {
     return (
         <div className={`relative z-0 w-full group ${className}`}>
-            <input type="radio" name={id} id={name} value={name} />
+            <input
+                type="radio"
+                id={name}
+                value={value}
+                onChange={onChange}
+                checked={checked}
+            />
             <label htmlFor={name} className="ml-1">
                 {name}
             </label>
