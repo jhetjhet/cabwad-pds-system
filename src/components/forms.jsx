@@ -2,25 +2,28 @@ import { Field } from "formik";
 import { useEffect, useState } from "react";
 import { Bounce, toast } from "react-toastify";
 
-export function CInput({ label, id, type = "text", name, className, isFormik = false, required = false }) {
+export function CInput({ label, id, type = "text", name, className, isFormik = false, required = false, errorMessage, hasError = false }) {
 
     return (
-        <div className={`relative z-0 w-full mb-5 group ${className}`}>
-            {isFormik ? (
-                <Field type={type} name={name} id={id}
-                    required={required}
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                />
-            ) : (
-                <input type={type} name={name} id={id}
-                    required={required}
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                />
-            )}
-            <label htmlFor={id} className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                {label}
-            </label>
-        </div>
+        <>
+            <div className={`relative z-0 w-full mb-5 group ${className}`}>
+                {isFormik ? (
+                    <Field type={type} name={name} id={id}
+                        required={required}
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    />
+                ) : (
+                    <input type={type} name={name} id={id}
+                        required={required}
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    />
+                )}
+                <label htmlFor={id} className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    {label}
+                </label>
+            </div>
+            <span className="text-red-400">This field is required</span>
+        </>
     );
 }
 
@@ -72,7 +75,7 @@ export function CModal({ show, setShow, title, children, onTrigger }) {
                     <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                         <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full">
                             <div className="sm:flex sm:items-start w-full">
-                                {/* <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                {/* <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
                                     <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                                     </svg>
@@ -125,39 +128,23 @@ export function createToast(type, message) {
 }
 
 
-export function deleteModal() {
+export function InfoModal({ show, setShow, title, message }) {
 
     return (
         <div
-            class="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]">
-            <div class="w-full max-w-md bg-white shadow-lg rounded-md p-6 relative">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="w-3.5 cursor-pointer shrink-0 fill-black hover:fill-red-500 float-right" viewBox="0 0 320.591 320.591">
-                    <path
-                        d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
-                        data-original="#000000"></path>
-                    <path
-                        d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"
-                        data-original="#000000"></path>
-                </svg>
-                <div class="my-8 text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 fill-red-500 inline" viewBox="0 0 24 24">
-                        <path
-                            d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-                            data-original="#000000" />
-                        <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-                            data-original="#000000" />
-                    </svg>
-                    <h4 class="text-xl font-semibold mt-6">Are you sure you want to delete it?</h4>
-                    <p class="text-sm text-gray-500 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor auctor
-                        arcu,
-                        at fermentum dui. Maecenas</p>
+            className={`${show ? 'block' : 'hidden'} fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]`}>
+            <div className="w-full max-w-md bg-white shadow-lg rounded-md p-6 relative">
+                <div className="my-8 text-center">
+                    <h4 className="text-xl font-semibold mt-6">{title}</h4>
+                    <p className="text-sm text-gray-500 mt-4">
+                        {message}
+                    </p>
                 </div>
-                <div class="flex flex-col space-y-2">
+                <div className="flex flex-col space-y-2">
                     <button type="button"
-                        class="px-6 py-2.5 rounded-md text-white text-sm font-semibold border-none outline-none bg-red-500 hover:bg-red-600 active:bg-red-500">Delete</button>
-                    <button type="button"
-                        class="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200">Cancel</button>
+                        className="px-6 py-2.5 rounded-md text-white text-sm font-semibold border-none outline-none bg-green-500 hover:bg-green-600 active:bg-green-500"
+                        onClick={() => setShow(false)}
+                    >Got it</button>
                 </div>
             </div>
         </div>

@@ -7,19 +7,26 @@ import InputFieldVW from "./InputFieldVW";
 import InputFieldWE from "./InputFieldWE";
 import InputFields from "./InputFields";
 import { defaultVal } from "./constants/constant";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { createPDS, getPDS, updatePDS } from "../../../api/employee.crud";
-import { createToast } from "../../forms";
+import { InfoModal, createToast } from "../../forms";
+import { useAuth } from "../../AuthenticationProvider";
 
 export default function PersonalInfoForm() {
     const [formData, setFormData] = useState({ ...defaultVal });
+    const [genUsername, setGenUsername] = useState();
+    const [showUserInfo, setShowUserInfo] = useState(false);
 
-    const { pdsId } = useParams();
+    const { pdsId, userId } = useParams();
+
+    const { user, setUser } = useAuth();
 
     const topDivRef = useRef();
 
-    useEffect(() => {
+    const navigate = useNavigate();
+    const location = useLocation();
 
+    useEffect(() => {
         if (!pdsId) {
             return;
         }
@@ -589,6 +596,19 @@ export default function PersonalInfoForm() {
     const onPdsSubmit = (e) => {
         e.preventDefault();
 
+        if (
+            !formData?.personal_information?.name?.firstname ||
+            !formData?.personal_information?.name?.middlename ||
+            !formData?.personal_information?.name?.lastname ||
+            !formData?.personal_information?.birth_date ||
+            !formData?.personal_information?.gender
+        ) {
+            createToast('error', "Fill out all required fields.");
+            return;
+        }
+
+        formData.user_id = userId;
+
         if (pdsId) {
             updatePDS(pdsId, formData).then((resp) => {
                 createToast('success', "Employee details updated successfully.");
@@ -596,18 +616,37 @@ export default function PersonalInfoForm() {
                     ...defaultVal,
                     ...resp.data,
                 });
-            }).catch(() => {
+            }).catch((error) => {
                 setFormData({ ...defaultVal });
-                createToast('error', "Something went wrong.");
+                if (error?.response?.data) {
+                    createToast('error', error?.response?.data);
+                }
+                else {
+                    createToast('error', "Something went wrong.");
+                }
             }).finally(() => {
                 topDivRef.current.scrollIntoView();
             });
         }
         else {
             createPDS(formData).then((resp) => {
+                const { pds, username, has_account } = resp.data;
+
+                setGenUsername(username);
+
                 createToast('success', "Employee details successfully added.");
-            }).catch(() => {
-                createToast('error', "Something went wrong.");
+
+                if (!has_account) {
+                    setShowUserInfo(true);
+                }
+            }).catch((error) => {
+                if (error?.response?.data) {
+                    createToast('error', error?.response?.data);
+                }
+                else {
+                    console.log(error)
+                    createToast('error', "Something went wrong.");
+                }
             }).finally(() => {
                 setFormData({ ...defaultVal });
                 topDivRef.current.scrollIntoView();
@@ -615,9 +654,53 @@ export default function PersonalInfoForm() {
         }
     }
 
+    const onSetShowUserInfo = (value) => {
+
+        setShowUserInfo(value);
+
+        navigate('/login');
+    }
+
+    const logout = () => {
+        setUser(null);
+        navigate('/login', {
+            state: {
+                is_logout: true,
+            }
+        });
+    }
+
+    const regex = /^\/acc\/employee(?:\/[a-zA-Z0-9_-]+)?$/;
+
     return (
         <>
+            {regex.test(location.pathname) && (
+                <div className="flex w-100 p-10">
+                    {user && (
+                        <h1 className="text-white font-extrabold text-2xl">Welcome {formData.personal_information.name.firstname}</h1>
+                    )}
+                    {user ? (
+                        <button className="ml-auto underline text-red-400 font-semibold italic"
+                            onClick={() => logout()}
+                        >
+                            Sign out
+                        </button>
+                    ) : (
+                        <button className="ml-auto underline text-gray-900 font-semibold italic"
+                            onClick={() => navigate('/login', { replace: true })}
+                        >
+                            Login
+                        </button>
+                    )}
+                </div>
+            )}
             <div ref={topDivRef} />
+            <InfoModal
+                show={showUserInfo}
+                setShow={onSetShowUserInfo}
+                title="Use the ff info to edit your details!"
+                message={`Your username is "${genUsername}", and your password is your "<first name>-<birth date>" ex. juan-1999-06-29`}
+            />
             <form className="w-full mx-auto" onSubmit={onPdsSubmit}>
                 <FormContainer title={"Personal Information"}>
                     <CInput
@@ -625,6 +708,7 @@ export default function PersonalInfoForm() {
                         name={"lastname"}
                         value={formData.personal_information.name.lastname}
                         onChange={handleNameChange}
+                        required
                     />
                     <div className="grid grid-cols-12 gap-x-1">
                         <CInput
@@ -633,6 +717,7 @@ export default function PersonalInfoForm() {
                             className={"col-span-9"}
                             value={formData.personal_information.name.firstname}
                             onChange={handleNameChange}
+                            required
                         />
                         <CInput
                             label={"Name Extension"}
@@ -647,6 +732,7 @@ export default function PersonalInfoForm() {
                         name={"middlename"}
                         value={formData.personal_information.name.middlename}
                         onChange={handleNameChange}
+                        required
                     />
                     <hr className="bg-black" />
                     <div className="grid md:grid-cols-2 md:gap-6 mt-4">
@@ -657,6 +743,7 @@ export default function PersonalInfoForm() {
                             className={"col-span-1"}
                             value={formData.personal_information.birth_date}
                             onChange={handlePersonalInfoChange}
+                            required
                         />
                         <CInput
                             label={"Place of Birth"}
@@ -666,7 +753,7 @@ export default function PersonalInfoForm() {
                             onChange={handlePersonalInfoChange}
                         />
                     </div>
-                    <div>Sex:</div>
+                    <div className="text-red-500">Sex:*</div>
                     <CRadio
                         name={"Male"}
                         value="male"

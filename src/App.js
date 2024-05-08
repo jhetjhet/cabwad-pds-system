@@ -11,6 +11,7 @@ import { Bounce, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import EmployeePage from "./components/pages/EmployeePage";
 import NotFoundPage from "./components/pages/NotFoundPage";
+import EmployeeAccountPage from "./components/pages/EmployeeAccountPage";
 
 const router = createBrowserRouter([
 	{
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
 				element: <PDSFormPage />
 			},
 			{
+				path: "user-pds-form/:userId",
+				element: <PDSFormPage />
+			},
+			{
 				path: "accounts",
 				element: <AccountsPage />,
 			},
@@ -48,7 +53,21 @@ const router = createBrowserRouter([
 		path: "/login",
 		element: <LoginPage />,
 		errorElement: <NotFoundPage />,
-	}
+	},
+	{
+		path: "/acc/employee",
+		element: <EmployeeAccountPage />,
+		errorElement: <NotFoundPage />,
+	},
+	{
+		path: "/acc/employee/:pdsId",
+		element: (
+			<PrivatePage>
+				<EmployeeAccountPage />
+			</PrivatePage>
+		),
+		errorElement: <NotFoundPage />,
+	},
 ]);
 
 function App() {
