@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { SUPER_ADMIN } from "./pages/pds/constants/constant";
+import { EMPLOYEE, SUPER_ADMIN } from "./pages/pds/constants/constant";
 
 const AuthContext = createContext();
 
@@ -9,20 +9,25 @@ export const AuthenticationProvider = ({ children }) => {
     const [user, _setUser] = useState(null);
 
     const setUser = (_user) => {
-        let isSuperAdmin = false;
 
         if(!_user?.roles) {
             return;
         }
 
+        _user.is_super_admin = false;
+        _user.is_employee = false;
+
         for (const role of _user.roles) {
+
             if(role.code === SUPER_ADMIN) {
-                isSuperAdmin = true;
-                break;
+                _user.is_super_admin = true;
+            }
+
+            if(role.code === EMPLOYEE) {
+                _user.is_employee = true;
             }
         }
 
-        _user.is_super_admin = isSuperAdmin;
 
         _setUser(_user);
     }

@@ -240,3 +240,11 @@ export const defaultVal = {
 
 export const SUPER_ADMIN = 1;
 export const ADMIN = 2;
+export const EMPLOYEE = 3;
+
+export const REQUIRED_FIELDS = [
+    "personal_information.name.firstname",
+    "personal_information.name.middlename",
+    "personal_information.name.lastname",
+    "personal_information.birth_date",
+];

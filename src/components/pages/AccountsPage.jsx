@@ -6,6 +6,7 @@ import Select from 'react-select';
 import { Field, Form, Formik } from "formik";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../AuthenticationProvider";
+import { useNavigate } from "react-router-dom";
 
 const SUPER_ADMIN = 1;
 const ADMIN = 2;
@@ -103,20 +104,32 @@ const UserFormModal = ({ show, setShow, title, loadedUser, onSubmit, updateMode 
                                     onChange={(newOptions) => setFieldValue('roles', newOptions)}
                                     placeholder="Select roles"
                                 />
-                                <CInput
+                                <label
+                                    htmlFor="username"
+                                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                >
+                                    Username
+                                </label>
+                                <Field
+                                    id="username"
+                                    className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                                     label="Username"
                                     required
                                     value={values.username}
                                     name="username"
-                                    isFormik
+                                    placeholder="Username"
+                                // isFormik
                                 />
-                                <CInput
+                                <Field
+                                    id="password"
+                                    className={`mt-6 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                                     label={updateMode ? "Set new password" : "Password"}
                                     type="password"
                                     required={!updateMode}
                                     value={values.password}
                                     name="password"
-                                    isFormik
+                                    placeholder="Enter new password"
+                                // isFormik
                                 />
                             </div>
                             <button ref={submitRef} type="submit" hidden />
@@ -137,20 +150,22 @@ export default function AccountsPage() {
 
     const [targetUser, setTargetUser] = useState();
 
-    const {user: authUser} = useAuth();
+    const { user: authUser } = useAuth();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         initUsersList(page);
     }, []);
 
-    const initUsersList = (targetPage=0, search) => {
+    const initUsersList = (targetPage = 0, search) => {
         targetPage++;
 
         const params = {
             page: targetPage,
         }
 
-        if(search) {
+        if (search) {
             params.username = search;
         }
 
@@ -168,8 +183,13 @@ export default function AccountsPage() {
     const onUserDelete = (id, name) => {
         deleteUser(id).then((() => {
             createToast('success', `User "${name}" is deleted successfuly!`);
-        })).catch(() => {
-            createToast('error', "Something went wrong.");
+        })).catch((error) => {
+            if (error?.response?.data) {
+                createToast('error', error?.response?.data);
+            }
+            else {
+                createToast('error', "Something went wrong.");
+            }
         }).finally(() => {
             initUsersList(page);
         });
@@ -261,13 +281,25 @@ export default function AccountsPage() {
                                 <td className="p-3 px-5 flex justify-end">
                                     <button type="button" disabled={!authUser?.is_super_admin} className="disabled:opacity-50 mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                                         onClick={() => {
+                                            if (user.pds) {
+                                                navigate(`/pds-form/${user.pds}`);
+                                            }
+                                            else {
+                                                navigate(`/user-pds-form/${user._id}`);
+                                            }
+                                        }}
+                                    >
+                                        {user.pds ? "Edit pds" : "Create pds"}
+                                    </button>
+                                    <button type="button" disabled={!authUser?.is_super_admin} className="disabled:opacity-50 mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                                        onClick={() => {
                                             setTargetUser(user);
                                             setShowUserForm(true);
                                         }}
                                     >
                                         Edit
                                     </button>
-                                    {authUser?.is_super_admin && (
+                                    {(authUser?.is_super_admin) && (
                                         <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                                             onClick={() => onUserDelete(user._id, user.name)}
                                         >

@@ -2,7 +2,7 @@ import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import api from "../../api/base";
 import { useAuth } from "../AuthenticationProvider";
 
@@ -25,8 +25,9 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (location?.state?.is_logout) {
-            removeCookie('token');
-            removeCookie('reset');
+            console.log("REMOVE")
+            removeCookie('token', { path: '/' });
+            removeCookie('reset', { path: '/' });
         }
         else {
             if (user) {
@@ -47,8 +48,8 @@ export default function LoginPage() {
 
         axios.post(loginUrl, values).then((resp) => {
             const { token, reset } = resp.data;
-            setCookies('token', token);
-            setCookies('reset', reset);
+            setCookies('token', token, { path: '/' });
+            setCookies('reset', reset, { path: '/' });
 
             navigate('/');
         }).catch((error) => {
@@ -136,6 +137,11 @@ export default function LoginPage() {
                                         >
                                             Sign in
                                         </button>
+                                    </div>
+                                    <div className="mt-6">
+                                        <Link to="/acc/employee" replace className="underline text-blue-500">
+                                            Go to pds form instead.
+                                        </Link>
                                     </div>
                                 </Form>
                             )}

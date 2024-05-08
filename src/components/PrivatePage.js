@@ -18,7 +18,15 @@ export default function PrivatePage({ children }) {
 
     useEffect(() => {
         if(!user) {
-            navigate('/login', {
+            navigate('/acc/employee', {
+                state: {
+                    from: location.pathname,
+                }
+            });
+        } 
+        
+        if (user && user.is_employee) {
+            navigate(`/acc/employee/${user.pds}`, {
                 state: {
                     from: location.pathname,
                 }

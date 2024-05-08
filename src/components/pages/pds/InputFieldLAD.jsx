@@ -180,6 +180,7 @@ function InputFieldLAD({ formData, setFormData }) {
                             type="button"
                             className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-20 h-8 px-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 mt-4"
                             onClick={() => handleRemoveField(index)}
+                            
                         >
                             Remove
                         </button>
