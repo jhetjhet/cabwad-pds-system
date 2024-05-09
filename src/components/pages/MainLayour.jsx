@@ -6,12 +6,13 @@ import { useState } from "react";
 
 
 export default function MainLayout() {
-    const { user } = useAuth();
+    const { user, setUser } = useAuth();
     const [openUserMenu, setOpenUserMenu] = useState(false);
 
     const navigate = useNavigate();
 
     const logout = () => {
+        setUser(null);
         navigate('/login', { state: {
             is_logout: true,
         }});

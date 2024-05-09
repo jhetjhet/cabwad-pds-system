@@ -10,6 +10,10 @@ export const AuthenticationProvider = ({ children }) => {
 
     const setUser = (_user) => {
 
+        if(!_user) {
+            _setUser(null);
+        }
+
         if(!_user?.roles) {
             return;
         }

@@ -601,7 +601,8 @@ export default function PersonalInfoForm() {
             !formData?.personal_information?.name?.middlename ||
             !formData?.personal_information?.name?.lastname ||
             !formData?.personal_information?.birth_date ||
-            !formData?.personal_information?.gender
+            !formData?.personal_information?.gender ||   
+            !formData?.personal_information?.agency_employee_no  
         ) {
             createToast('error', "Fill out all required fields.");
             return;
@@ -903,6 +904,7 @@ export default function PersonalInfoForm() {
                                 formData.personal_information.agency_employee_no
                             }
                             onChange={handlePersonalInfoChange}
+                            required
                         />
                     </div>
                     <hr className="bg-black" />
