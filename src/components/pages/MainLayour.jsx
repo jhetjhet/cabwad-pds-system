@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar";
 import { useAuth } from "../AuthenticationProvider";
 import { useState } from "react";
+import CFooter from "./CFooter";
 
 
 export default function MainLayout() {
@@ -13,9 +14,11 @@ export default function MainLayout() {
 
     const logout = () => {
         setUser(null);
-        navigate('/login', { state: {
-            is_logout: true,
-        }});
+        navigate('/login', {
+            state: {
+                is_logout: true,
+            }
+        });
     }
 
     return (
@@ -29,8 +32,8 @@ export default function MainLayout() {
                     <div className="relative w-1/2 flex justify-end">
                         <button
                             className="text-white bg-yellow-500 text-lg font-extrabold px-3 realtive z-10 rounded-md overflow-hidden border-4 border-blue-800 hover:border-blue-700 focus:border-blue-600 focus:outline-none"
-                                onClick={() => setOpenUserMenu(true)}
-                            >
+                            onClick={() => setOpenUserMenu(true)}
+                        >
                             {/* <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" /> */}
                             Hi {user?.username}
                         </button>
@@ -50,11 +53,11 @@ export default function MainLayout() {
                 </header>
 
                 <div className="w-full h-screen overflow-x-hidden border-t flex flex-col">
-                    <main className="w-full flex-grow p-6">
+                    <main className="w-full flex-grow p-6 mb-6">
                         <Outlet />
                     </main>
+                    <CFooter />
                 </div>
-
             </div >
         </div>
     );

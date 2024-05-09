@@ -11,6 +11,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { createPDS, getPDS, updatePDS } from "../../../api/employee.crud";
 import { InfoModal, createToast } from "../../forms";
 import { useAuth } from "../../AuthenticationProvider";
+import InputFieldDA from "./InputFieldDA";
 
 export default function PersonalInfoForm() {
     const [formData, setFormData] = useState({ ...defaultVal });
@@ -37,7 +38,7 @@ export default function PersonalInfoForm() {
                 ...resp.data,
             });
         }).catch(() => { });
-    }, []);
+    }, [user]);
 
     const handlePersonalInfoChange = (event) => {
         const { name, value } = event.target;
@@ -601,8 +602,8 @@ export default function PersonalInfoForm() {
             !formData?.personal_information?.name?.middlename ||
             !formData?.personal_information?.name?.lastname ||
             !formData?.personal_information?.birth_date ||
-            !formData?.personal_information?.gender ||   
-            !formData?.personal_information?.agency_employee_no  
+            !formData?.personal_information?.gender ||
+            !formData?.personal_information?.agency_employee_no
         ) {
             createToast('error', "Fill out all required fields.");
             return;
@@ -2075,12 +2076,55 @@ export default function PersonalInfoForm() {
                         </div>
                     )}
                 </FormContainer>
-                <button
-                    type="submit"
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                    {pdsId ? 'Edit' : 'Save'}
-                </button>
+
+
+                <hr className="my-12" />
+
+                {user && (
+                    <>
+                        <FormContainer title={"Disciplinary Actions"}>
+                            <InputFieldDA
+                                formData={formData}
+                                setFormData={setFormData}
+                                viewMode={user.is_employee && !(user.is_super_admin || user.is_admin)}
+                            />
+                        </FormContainer>
+
+                        <FormContainer title={"Leave"}>
+                            <div className={`flex flex-row space-x-4 ${user.is_employee && !(user.is_super_admin || user.is_admin) ? "pointer-events-none opacity-70" : ""}`}>
+                                <CInput
+                                    type="number"
+                                    label={"Sick Leave"}
+                                    className={"col-span-2"}
+                                    value={formData.leave.sick}
+                                    name={
+                                        "leave.sick"
+                                    }
+                                    onChange={generalHandleChange}
+                                />
+                                <CInput
+                                    type="number"
+                                    label={"Vacation Leave"}
+                                    className={"col-span-2"}
+                                    value={formData.leave.vacation}
+                                    name={
+                                        "leave.vacation"
+                                    }
+                                    onChange={generalHandleChange}
+                                />
+                            </div>
+                        </FormContainer>
+                    </>
+                )}
+
+                <div className="w-full flex">
+                    <button
+                        type="submit"
+                        className="w-1/2 m-auto mt-6 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-extrabold text-lg rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 shadow-xl"
+                    >
+                        {pdsId ? 'Edit' : 'Save'}
+                    </button>
+                </div>
             </form>
         </>
     );

@@ -236,6 +236,19 @@ export const defaultVal = {
             },
         },
     },
+    disciplinary_actions: [
+        {
+            memo_no: "",
+            order_no: "",
+            case: "",
+            date: "",
+            sanction: "",
+        },
+    ],
+    leave: {
+        sick: 0,
+        vacation: 0,
+    }
 };
 
 export const SUPER_ADMIN = 1;

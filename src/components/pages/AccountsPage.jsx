@@ -7,6 +7,7 @@ import { Field, Form, Formik } from "formik";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../AuthenticationProvider";
 import { useNavigate } from "react-router-dom";
+import { EMPLOYEE } from "./pds/constants/constant";
 
 const SUPER_ADMIN = 1;
 const ADMIN = 2;
@@ -14,11 +15,13 @@ const ADMIN = 2;
 const ROLES = {
     [SUPER_ADMIN]: 'Super Admin',
     [ADMIN]: 'Admin',
+    [EMPLOYEE]: 'Employee',
 }
 
 const options = [
     { value: SUPER_ADMIN, label: 'Super Admin' },
-    { value: ADMIN, label: 'Admin' }
+    { value: ADMIN, label: 'Admin' },
+    { value: EMPLOYEE, label: 'Employee' },
 ];
 
 const DEFAULT_USER_DETAILS = {
@@ -276,10 +279,13 @@ export default function AccountsPage() {
                                     <span>{user.username}</span>
                                 </td>
                                 <td className="p-3 px-5">
-                                    <p>{[...user.roles.map((role) => role.name)].join(", ")}</p>
+                                    {/* <p>{[...user.roles.map((role) => role.name)].join(", ")}</p> */}
+                                    {user.roles.map((r) => (
+                                        <span key={r._id} className="px-2 py-1 bg-yellow-300 rounded-xl mx-1 text-xs">{r.name}</span>
+                                    ))}
                                 </td>
                                 <td className="p-3 px-5 flex justify-end">
-                                    <button type="button" disabled={!authUser?.is_super_admin} className="disabled:opacity-50 mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                                    <button type="button" disabled={!authUser?.is_super_admin} className={`disabled:opacity-50 mr-3 text-sm text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline ${user.pds ? "bg-green-500 hover:bg-green-700" : "bg-blue-500 hover:bg-blue-700"}`}
                                         onClick={() => {
                                             if (user.pds) {
                                                 navigate(`/pds-form/${user.pds}`);
@@ -291,7 +297,7 @@ export default function AccountsPage() {
                                     >
                                         {user.pds ? "Edit pds" : "Create pds"}
                                     </button>
-                                    <button type="button" disabled={!authUser?.is_super_admin} className="disabled:opacity-50 mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                                    <button type="button" disabled={!authUser?.is_super_admin} className="disabled:opacity-50 mr-3 text-sm bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                                         onClick={() => {
                                             setTargetUser(user);
                                             setShowUserForm(true);
