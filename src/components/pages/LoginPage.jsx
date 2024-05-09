@@ -25,7 +25,6 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (location?.state?.is_logout) {
-            console.log("REMOVE")
             removeCookie('token', { path: '/' });
             removeCookie('reset', { path: '/' });
         }
